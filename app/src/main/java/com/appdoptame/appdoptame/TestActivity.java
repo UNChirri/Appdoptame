@@ -5,14 +5,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.facebook.AccessToken;
 import com.facebook.login.LoginManager;
 import com.appdoptame.appdoptame.FBAuth.FBLogin;
+import com.google.firebase.auth.FirebaseAuth;
+
 public class TestActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if(!checkForToken()) goLoginScreen();
+        if(!checkForUser()) goLoginScreen();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
@@ -21,7 +22,7 @@ public class TestActivity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        if(!checkForToken()) goLoginScreen();
+        if(!checkForUser()) goLoginScreen();
     }
 
     private void goLoginScreen(){
@@ -30,11 +31,12 @@ public class TestActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private Boolean checkForToken(){
-        return AccessToken.getCurrentAccessToken() == null ? false : true;
+    private Boolean checkForUser(){
+        return FirebaseAuth.getInstance().getCurrentUser() == null ? false : true;
     }
 
     public void logout(View view) {
+        FirebaseAuth.getInstance().signOut();
         LoginManager.getInstance().logOut();
         try{
             Intent out = new Intent(this, FBLogin.class);

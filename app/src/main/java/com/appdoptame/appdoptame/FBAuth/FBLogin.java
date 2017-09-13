@@ -11,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import com.appdoptame.appdoptame.R;
 import com.appdoptame.appdoptame.TestActivity;
 import com.facebook.AccessToken;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class FBLogin extends AppCompatActivity implements FBLoginLogic.OnFragmentInteractionListener {
@@ -19,9 +21,7 @@ public class FBLogin extends AppCompatActivity implements FBLoginLogic.OnFragmen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fblogin);
-        if(AccessToken.getCurrentAccessToken() != null){
-            goMainPage();
-        }
+        checkSession();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         FBLoginLogic fbLogicFragment = FBLoginLogic.newInstance();
@@ -45,5 +45,12 @@ public class FBLogin extends AppCompatActivity implements FBLoginLogic.OnFragmen
         Intent intent = new Intent(this, TestActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+    }
+
+    private void checkSession(){
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (firebaseUser != null){
+            goMainPage();
+        }
     }
 }
