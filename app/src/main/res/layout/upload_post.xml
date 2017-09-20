@@ -3,10 +3,26 @@
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+
+    <RelativeLayout
+        android:id="@+id/photo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/ib_photo"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@android:drawable/ic_menu_camera"
+            android:layout_centerHorizontal="true"/>
+
+    </RelativeLayout>
+
     <LinearLayout
         android:id="@+id/description"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/photo">
 
         <TextView
             android:layout_width="@dimen/tv_width_post"
@@ -81,20 +97,6 @@
             android:layout_height="@dimen/et_height_post"
             android:text="@string/location"/>
     </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/location">
-
-        <ImageButton
-            android:id="@+id/ib_photo"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:background="@android:drawable/ic_menu_camera"
-            android:layout_centerHorizontal="true"/>
-
-    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/send_button"

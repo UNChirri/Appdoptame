@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -70,8 +71,9 @@ public class PostActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // TODO: Send messages on click
-                Post post = new Post(user, description.toString(), genre.toString(), age.toString(), name.toString(), photoUrl);
-                databaseReference.push().setValue(post);
+                Log.d("message",photoUrl);
+                Post post = new Post(user.toString(), description.getText().toString(), genre.getText().toString(), age.getText().toString(), name.getText().toString(), photoUrl);
+                databaseReference.push().setValue(new Post(user, description.getText().toString(), genre.getText().toString(), age.getText().toString(), name.getText().toString(), photoUrl));
                 // Clear input box
             }
         });
