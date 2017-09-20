@@ -71,9 +71,9 @@ public class PostActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // TODO: Send messages on click
-                Log.d("message",photoUrl);
+                Log.d("message", name.getText().toString().trim());
                 Post post = new Post(user.toString(), description.getText().toString(), genre.getText().toString(), age.getText().toString(), name.getText().toString(), photoUrl);
-                databaseReference.push().setValue(new Post(user, description.getText().toString(), genre.getText().toString(), age.getText().toString(), name.getText().toString(), photoUrl));
+                databaseReference.setValue(post);
                 // Clear input box
             }
         });

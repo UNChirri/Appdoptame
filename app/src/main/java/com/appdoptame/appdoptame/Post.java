@@ -1,14 +1,11 @@
 package com.appdoptame.appdoptame;
 
-import android.support.v7.app.AppCompatActivity;
-
-
 /**
  * Created by jufarangoma on 19/09/17.
  */
 
 
-public class Post extends AppCompatActivity{
+public  class Post{
 
     private String id;
     private String user;

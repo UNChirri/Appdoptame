@@ -41,16 +41,17 @@ public class FBLogin extends AppCompatActivity implements FBLoginLogic.OnFragmen
         //you can leave it empty
     }
 
-    private void goMainPage(){
+    private void goMainPage(FirebaseUser user){
         Intent intent = new Intent(this, TestActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("Username", user.getUid());
         startActivity(intent);
     }
 
     private void checkSession(){
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if (firebaseUser != null){
-            goMainPage();
+            goMainPage(firebaseUser);
         }
     }
 }
