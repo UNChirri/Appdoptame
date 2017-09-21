@@ -175,7 +175,7 @@ public class FBLoginLogic extends Fragment {
     private void goMainScreen(FirebaseUser user) {
         Intent intent = new Intent(getActivity(), SwipeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-//        intent.putExtra("Username", user.getUid());
+        intent.putExtra("Username", user.getUid());
         startActivity(intent);
     }
 
