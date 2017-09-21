@@ -37,8 +37,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".TestActivity"></activity>
-        <activity android:name=".PostActivity"></activity>
+        <activity android:name=".activities.TestActivity"></activity>
+        <activity android:name=".activities.PostActivity"></activity>
     </application>
 
 

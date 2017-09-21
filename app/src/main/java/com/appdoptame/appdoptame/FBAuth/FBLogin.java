@@ -9,8 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 import com.appdoptame.appdoptame.R;
-import com.appdoptame.appdoptame.TestActivity;
-import com.facebook.AccessToken;
+import com.appdoptame.appdoptame.activities.TestActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 

@@ -1,11 +1,11 @@
-package com.appdoptame.appdoptame;
+package com.appdoptame.appdoptame.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
+import com.appdoptame.appdoptame.R;
 import com.facebook.login.LoginManager;
 import com.appdoptame.appdoptame.FBAuth.FBLogin;
 import com.google.firebase.auth.FirebaseAuth;

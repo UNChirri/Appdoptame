@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.appdoptame.appdoptame.R;
-import com.appdoptame.appdoptame.TestActivity;
+import com.appdoptame.appdoptame.activities.TestActivity;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -28,7 +27,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.storage.FirebaseStorage;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
 
