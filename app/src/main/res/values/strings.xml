@@ -9,4 +9,9 @@
     <!-- Login strings-->
     <string name="error_login">An error has occurred</string>
     <string name="firebase_error_login">Login error: Incorrect user</string>
+    <string name="description">Description</string>
+    <string name="name">Name</string>
+    <string name="genre">Genre</string>
+    <string name="age">Age</string>
+    <string name="location">Location</string>
 </resources>

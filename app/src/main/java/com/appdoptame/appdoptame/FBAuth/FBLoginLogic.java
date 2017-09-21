@@ -28,6 +28,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.FirebaseStorage;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
 
@@ -101,7 +102,7 @@ public class FBLoginLogic extends Fragment {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if(user != null){
-                    goMainScreen();
+                    goMainScreen(user);
                 }
             }
         };
@@ -172,9 +173,10 @@ public class FBLoginLogic extends Fragment {
      * goes to the main screen once the user has logged in
      * TODO: Update the "main screen" according to the Appdoptame logic
      */
-    private void goMainScreen() {
+    private void goMainScreen(FirebaseUser user) {
         Intent intent = new Intent(getActivity(), TestActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("Username", user.getUid());
         startActivity(intent);
     }
 
