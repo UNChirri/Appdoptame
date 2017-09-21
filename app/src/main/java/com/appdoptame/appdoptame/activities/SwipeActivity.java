@@ -10,7 +10,7 @@ import android.view.View;
 import com.appdoptame.appdoptame.R;
 import com.appdoptame.appdoptame.model.Profile;
 import com.appdoptame.appdoptame.utils.Utils;
-import com.appdoptame.appdoptame.view.TinderCard;
+import com.appdoptame.appdoptame.view.Card;
 import com.mindorks.placeholderview.SwipeDecor;
 import com.mindorks.placeholderview.SwipePlaceHolderView;
 
@@ -45,7 +45,7 @@ public class SwipeActivity extends AppCompatActivity {
 
 
         for(Profile profile : Utils.loadProfiles(this.getApplicationContext())){
-            mSwipeView.addView(new TinderCard(mContext, profile, mSwipeView));
+            mSwipeView.addView(new Card(mContext, profile, mSwipeView));
         }
 
         findViewById(R.id.rejectBtn).setOnClickListener(new View.OnClickListener() {

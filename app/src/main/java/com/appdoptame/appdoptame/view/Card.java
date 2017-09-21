@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.appdoptame.appdoptame.R;
+import com.appdoptame.appdoptame.activities.ProfileActivity;
 import com.appdoptame.appdoptame.model.Profile;
 import com.appdoptame.appdoptame.utils.Utils;
 import com.bumptech.glide.Glide;
@@ -27,7 +28,7 @@ import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
  * Created by janisharali on 19/08/16.
  */
 @Layout(R.layout.card_view)
-public class TinderCard {
+public class Card {
 
     @View(R.id.profileImageView)
     private ImageView profileImageView;
@@ -42,7 +43,7 @@ public class TinderCard {
     private Context mContext;
     private SwipePlaceHolderView mSwipeView;
 
-    public TinderCard(Context context, Profile profile, SwipePlaceHolderView swipeView) {
+    public Card(Context context, Profile profile, SwipePlaceHolderView swipeView) {
         mContext = context;
         mProfile = profile;
         mSwipeView = swipeView;
@@ -61,10 +62,10 @@ public class TinderCard {
     @Click(R.id.profileImageView)
     private void onClick(){
         Log.d("EVENT", "profileImageView click");
-//        Intent intentMain = new Intent(mContext, Main2Activity.class);
-//        intentMain.putExtra("profile", mProfile);
-//        intentMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//        mContext.startActivity(intentMain);
+        Intent intentMain = new Intent(mContext, ProfileActivity.class);
+        intentMain.putExtra("profile", mProfile);
+        intentMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        mContext.startActivity(intentMain);
     }
 
     @SwipeOut
