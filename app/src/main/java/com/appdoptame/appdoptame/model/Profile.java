@@ -1,22 +1,52 @@
-package com.appdoptame.appdoptame;
+package com.appdoptame.appdoptame.model;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 /**
  * Created by jufarangoma on 19/09/17.
  */
 
 
-public  class Post{
+public  class Profile {
 
     private String id;
+
     private String user;
+
+    @SerializedName("description")
+    @Expose
     private String description;
+
     private String genre;
+
+    @SerializedName("age")
+    @Expose
     private String age;
+
+    @SerializedName("name")
+    @Expose
     private String name;
+
+    @SerializedName("url")
+    @Expose
     private String photoUrl;
+
+    @SerializedName("location")
+    @Expose
     private String location;
 
-    public Post(String user, String description, String genre, String age, String name, String photoUrl) {
+    @SerializedName("breed")
+    @Expose
+    private String breed;
+
+    @SerializedName("photos")
+    @Expose
+    private List<String> photos;
+
+    public Profile(String user, String description, String genre, String age, String name, String photoUrl) {
         this.user = user;
         this.description = description;
         this.genre = genre;
@@ -25,7 +55,7 @@ public  class Post{
         this.photoUrl = photoUrl;
     }
 
-    public Post(String id, String user, String description, String genre, String age, String photoUrl, String location, String name) {
+    public Profile(String id, String user, String description, String genre, String age, String photoUrl, String location, String name) {
         this.id = id;
         this.user = user;
         this.description = description;
@@ -99,5 +129,17 @@ public  class Post{
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public List<String> getPhotos() {return photos;}
+
+    public void setPhotos(List<String> photos) {this.photos = photos;}
+
+    public String getBreed() {
+        return breed;
+    }
+
+    public void setBreed(String breed) {
+        this.breed = breed;
     }
 }

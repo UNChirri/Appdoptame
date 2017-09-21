@@ -10,18 +10,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import com.appdoptame.appdoptame.Post;
+import com.appdoptame.appdoptame.model.Profile;
 import com.appdoptame.appdoptame.R;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
-import static android.R.attr.data;
 
 /**
  * Created by jufarangoma on 17/09/17.
@@ -74,8 +71,8 @@ public class PostActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // TODO: Send messages on click
                 Log.d("message", photoUrl);
-                Post post = new Post(user.toString(), description.getText().toString(), genre.getText().toString(), age.getText().toString(), name.getText().toString(), photoUrl);
-                databaseReference.push().setValue(post);
+                Profile profile = new Profile(user.toString(), description.getText().toString(), genre.getText().toString(), age.getText().toString(), name.getText().toString(), photoUrl);
+                databaseReference.push().setValue(profile);
                 // Clear input box
 
                 description.setText("");

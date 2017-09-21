@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 import com.appdoptame.appdoptame.R;
+import com.appdoptame.appdoptame.activities.SwipeActivity;
 import com.appdoptame.appdoptame.activities.TestActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -41,9 +42,9 @@ public class FBLogin extends AppCompatActivity implements FBLoginLogic.OnFragmen
     }
 
     private void goMainPage(FirebaseUser user){
-        Intent intent = new Intent(this, TestActivity.class);
+        Intent intent = new Intent(this, SwipeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra("Username", user.getUid());
+//        intent.putExtra("Username", user.getUid());
         startActivity(intent);
     }
 

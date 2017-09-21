@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.appdoptame.appdoptame.R;
+import com.appdoptame.appdoptame.activities.SwipeActivity;
 import com.appdoptame.appdoptame.activities.TestActivity;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -172,9 +173,9 @@ public class FBLoginLogic extends Fragment {
      * TODO: Update the "main screen" according to the Appdoptame logic
      */
     private void goMainScreen(FirebaseUser user) {
-        Intent intent = new Intent(getActivity(), TestActivity.class);
+        Intent intent = new Intent(getActivity(), SwipeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra("Username", user.getUid());
+//        intent.putExtra("Username", user.getUid());
         startActivity(intent);
     }
 
