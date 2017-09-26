@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Point;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -14,23 +15,40 @@ import android.view.View;
 import com.appdoptame.appdoptame.FBAuth.FBLogin;
 import com.appdoptame.appdoptame.R;
 import com.appdoptame.appdoptame.model.Profile;
+import com.appdoptame.appdoptame.model.ProfileList;
 import com.appdoptame.appdoptame.utils.Utils;
 import com.appdoptame.appdoptame.view.Card;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.mindorks.placeholderview.SwipeDecor;
 import com.mindorks.placeholderview.SwipePlaceHolderView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SwipeActivity extends AppCompatActivity {
 
     private SwipePlaceHolderView mSwipeView;
     private Context mContext;
     private String userName;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
+    public static List<Profile> profileList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_swipe);
+
+        //Firebase inicialization
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference().child("posts");
+        profileList = new ArrayList<>();
 
         mSwipeView = (SwipePlaceHolderView)findViewById(R.id.swipeView);
         mContext = getApplicationContext();
@@ -53,9 +71,21 @@ public class SwipeActivity extends AppCompatActivity {
                         .setSwipeOutMsgLayoutId(R.layout.swipe_out_msg_view));
 
 
-        for(Profile profile : Utils.loadProfiles(this.getApplicationContext())){
-            mSwipeView.addView(new Card(mContext, profile, mSwipeView));
-        }
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                for (DataSnapshot child : snapshot.getChildren()) {
+                    Profile profile = child.getValue(Profile.class);
+                    Log.d("Profile",profile.toString());
+                    profileList.add(profile);
+                }
+                cardView();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         findViewById(R.id.rejectBtn).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +107,12 @@ public class SwipeActivity extends AppCompatActivity {
                 mSwipeView.undoLastSwipe();
             }
         });
+    }
+
+    public void cardView(){
+        for(Profile profile : profileList){
+            mSwipeView.addView(new Card(mContext, profile, mSwipeView));
+        }
     }
 
     @Override

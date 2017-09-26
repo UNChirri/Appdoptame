@@ -47,6 +47,25 @@ public  class Profile implements Serializable{
     @Expose
     private List<String> photos;
 
+    @Override
+    public String toString() {
+        return "Profile{" +
+                "id='" + id + '\'' +
+                ", user='" + user + '\'' +
+                ", description='" + description + '\'' +
+                ", genre='" + genre + '\'' +
+                ", age='" + age + '\'' +
+                ", name='" + name + '\'' +
+                ", photoUrl='" + photoUrl + '\'' +
+                ", location='" + location + '\'' +
+                ", breed='" + breed + '\'' +
+                ", photos=" + photos +
+                '}';
+    }
+
+    public Profile(){
+    }
+
     public Profile(String user, String description, String genre, String age, String name, String photoUrl) {
         this.user = user;
         this.description = description;
