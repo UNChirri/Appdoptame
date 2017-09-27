@@ -3,13 +3,18 @@
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-
     <RelativeLayout
         android:id="@+id/photo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <ImageView
+            android:id="@+id/iv_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
         <ImageButton
+            android:layout_below="@id/iv_profile"
             android:id="@+id/ib_photo"
             android:layout_width="45dp"
             android:layout_height="45dp"
@@ -27,15 +32,19 @@
         <TextView
             android:layout_width="@dimen/tv_width_post"
             android:layout_height="@dimen/et_height_post"
-            android:text="@string/description"/>
+            android:text="@string/description"
+            android:layout_marginLeft="@dimen/left_padding"/>
 
         <EditText
             android:id="@+id/et_description"
             android:layout_width="match_parent"
-            android:layout_height="145dp"/>
+            android:layout_height="145dp"
+            android:inputType="textMultiLine"
+            android:layout_marginRight="@dimen/right_padding"/>
     </LinearLayout>
 
     <LinearLayout
+        style="@style/Padding"
         android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -44,15 +53,16 @@
         <TextView
             android:layout_width="@dimen/tv_width_post"
             android:layout_height="@dimen/et_height_post"
-            android:text="@string/name"/>
+            android:text="@string/name" />
 
         <EditText
             android:id="@+id/et_name"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/et_height_post"/>
+            android:layout_height="@dimen/et_height_post" />
     </LinearLayout>
 
     <LinearLayout
+        style="@style/Padding"
         android:id="@+id/genre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -70,6 +80,7 @@
     </LinearLayout>
 
     <LinearLayout
+        style="@style/Padding"
         android:id="@+id/age"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -87,6 +98,7 @@
     </LinearLayout>
 
     <LinearLayout
+        style="@style/Padding"
         android:id="@+id/location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -96,6 +108,12 @@
             android:layout_width="@dimen/tv_width_post"
             android:layout_height="@dimen/et_height_post"
             android:text="@string/location"/>
+
+        <EditText
+            android:id="@+id/et_location"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/et_height_post"/>
+
     </LinearLayout>
 
     <LinearLayout
