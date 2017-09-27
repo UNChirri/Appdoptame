@@ -23,4 +23,10 @@
         <item name="android:layout_marginTop">10dp</item>
     </style>
 
+    <style name="Padding">
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_marginRight">15dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+
 </resources>

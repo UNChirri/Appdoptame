@@ -116,6 +116,26 @@
 
     </LinearLayout>
 
+
+    <LinearLayout
+        style="@style/Padding"
+        android:id="@+id/breed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/location">
+
+        <TextView
+            android:layout_width="@dimen/tv_width_post"
+            android:layout_height="@dimen/et_height_post"
+            android:text="@string/breed"/>
+
+        <EditText
+            android:id="@+id/et_breed"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/et_height_post"/>
+
+    </LinearLayout>
+
     <LinearLayout
         android:id="@+id/send_button"
         android:layout_width="match_parent"
@@ -133,6 +153,7 @@
             android:layout_marginLeft="130dp"/>
 
     </LinearLayout>
+
 
 
 </RelativeLayout>
