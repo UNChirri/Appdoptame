@@ -13,9 +13,9 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.appdoptame.appdoptame.Base.BaseActivity;
 import com.appdoptame.appdoptame.R;
-import com.appdoptame.appdoptame.TestActivity;
+import com.appdoptame.appdoptame.activities.SwipeActivity;
+import com.appdoptame.appdoptame.activities.TestActivity;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -102,7 +102,7 @@ public class FBLoginLogic extends Fragment {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if(user != null){
-                    goMainScreen();
+                    goMainScreen(user);
                 }
             }
         };
@@ -173,9 +173,10 @@ public class FBLoginLogic extends Fragment {
      * goes to the main screen once the user has logged in
      * TODO: Update the "main screen" according to the Appdoptame logic
      */
-    private void goMainScreen() {
-        Intent intent = new Intent(getActivity(), BaseActivity.class);
+    private void goMainScreen(FirebaseUser user) {
+        Intent intent = new Intent(getActivity(), SwipeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("Username", user.getUid());
         startActivity(intent);
     }
 

@@ -1,6 +1,5 @@
 package com.appdoptame.appdoptame.FBAuth;
 
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,9 +7,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
-import com.appdoptame.appdoptame.Base.BaseActivity;
 import com.appdoptame.appdoptame.R;
+import com.appdoptame.appdoptame.activities.SwipeActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -41,16 +43,17 @@ public class FBLogin extends AppCompatActivity implements FBLoginLogic.OnFragmen
         //you can leave it empty
     }
 
-    private void goMainPage(){
-        Intent intent = new Intent(this, BaseActivity.class);
+    private void goMainPage(FirebaseUser user){
+        Intent intent = new Intent(this, SwipeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("Username", user.getUid());
         startActivity(intent);
     }
 
     private void checkSession(){
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if (firebaseUser != null){
-            goMainPage();
+            goMainPage(firebaseUser);
         }
     }
 }
