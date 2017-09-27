@@ -7,7 +7,7 @@ import android.view.View;
 
 import com.appdoptame.appdoptame.R;
 import com.facebook.login.LoginManager;
-import com.appdoptame.appdoptame.FBAuth.FBLogin;
+import com.appdoptame.appdoptame.Auth.Login;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class TestActivity extends AppCompatActivity {
@@ -28,7 +28,7 @@ public class TestActivity extends AppCompatActivity {
     }
 
     private void goLoginScreen(){
-        Intent intent = new Intent(this, FBLogin.class);
+        Intent intent = new Intent(this, Login.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
@@ -48,7 +48,7 @@ public class TestActivity extends AppCompatActivity {
         FirebaseAuth.getInstance().signOut();
         LoginManager.getInstance().logOut();
         try{
-            Intent out = new Intent(this, FBLogin.class);
+            Intent out = new Intent(this, Login.class);
             startActivity(out);
         }catch(Exception e){
             e.printStackTrace();

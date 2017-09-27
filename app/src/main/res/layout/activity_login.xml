@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.appdoptame.appdoptame.FBAuth.FBLogin">
+    tools:context="com.appdoptame.appdoptame.Auth.Login">
 
     <RelativeLayout
         android:id="@+id/fragment_container"
@@ -13,7 +13,7 @@
         tools:layout_editor_absoluteY="8dp"
         tools:layout_editor_absoluteX="8dp" />
 
-    <fragment android:name="com.appdoptame.appdoptame.FBAuth.FBLoginLogic"
+    <fragment android:name="com.appdoptame.appdoptame.Auth.FBLoginLogic"
         android:id="@+id/fb_logic_fragment"
         android:layout_width="0dp"
         android:layout_height="0dp"

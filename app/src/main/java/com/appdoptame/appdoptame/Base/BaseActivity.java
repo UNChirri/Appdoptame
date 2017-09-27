@@ -1,17 +1,12 @@
 package com.appdoptame.appdoptame.Base;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -24,20 +19,18 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.appdoptame.appdoptame.FBAuth.FBLogin;
+import com.appdoptame.appdoptame.Auth.Login;
 import com.appdoptame.appdoptame.R;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.io.InputStream;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.concurrent.ExecutionException;
 
 import javax.net.ssl.HttpsURLConnection;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -150,7 +143,7 @@ public class BaseActivity extends AppCompatActivity
             FirebaseAuth.getInstance().signOut();
             LoginManager.getInstance().logOut();
             try{
-                Intent out = new Intent(this, FBLogin.class);
+                Intent out = new Intent(this, Login.class);
                 startActivity(out);
             }catch(Exception e){
                 e.printStackTrace();

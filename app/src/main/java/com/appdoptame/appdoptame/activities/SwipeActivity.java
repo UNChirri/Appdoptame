@@ -12,7 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.appdoptame.appdoptame.FBAuth.FBLogin;
+import com.appdoptame.appdoptame.Auth.Login;
 import com.appdoptame.appdoptame.R;
 import com.appdoptame.appdoptame.model.Profile;
 import com.appdoptame.appdoptame.utils.Utils;
@@ -135,7 +135,7 @@ public class SwipeActivity extends AppCompatActivity {
                 FirebaseAuth.getInstance().signOut();
                 LoginManager.getInstance().logOut();
                 try{
-                    intent = new Intent(this, FBLogin.class);
+                    intent = new Intent(this, Login.class);
                     startActivity(intent);
                 }catch(Exception e){
                     e.printStackTrace();
