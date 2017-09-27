@@ -1,5 +1,6 @@
 package com.appdoptame.appdoptame.FBAuth;
 
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,9 +9,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
+import com.appdoptame.appdoptame.Base.BaseActivity;
 import com.appdoptame.appdoptame.R;
-import com.appdoptame.appdoptame.TestActivity;
-import com.facebook.AccessToken;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -42,7 +42,7 @@ public class FBLogin extends AppCompatActivity implements FBLoginLogic.OnFragmen
     }
 
     private void goMainPage(){
-        Intent intent = new Intent(this, TestActivity.class);
+        Intent intent = new Intent(this, BaseActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }

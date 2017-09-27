@@ -9,4 +9,12 @@
     <!-- Login strings-->
     <string name="error_login">An error has occurred</string>
     <string name="firebase_error_login">Login error: Incorrect user</string>
+    <string name="title_activity_base">BaseActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="prof">Profile</string>
+    <string name="logout">Logout</string>
 </resources>
