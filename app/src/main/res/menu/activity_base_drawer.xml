@@ -14,14 +14,12 @@
 
     <group
         android:id="@+id/logoutGroup">
-        <menu>
 
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/logout"
                 android:title="@string/logout"
                 />
-        </menu>
     </group>
 
 </menu>
