@@ -1,120 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-
-    <RelativeLayout
-        android:id="@+id/photo"
-        android:layout_width="match_parent"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView01"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:scrollbars="vertical">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal" android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageButton
-            android:id="@+id/ib_photo"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:background="@android:drawable/ic_menu_camera"
-            android:layout_centerHorizontal="true"/>
+        <RelativeLayout
+            android:id="@+id/photo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+            <ImageButton
+                android:id="@+id/ib_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:maxWidth="220dp"
+                android:maxHeight="420dp"
+                android:scaleType="fitCenter"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/upload"
+                android:background="@null"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/photo">
+
+            <TextView
+                android:layout_width="@dimen/tv_width_post"
+                android:layout_height="@dimen/et_height_post"
+                android:text="@string/description"
+                android:layout_marginLeft="@dimen/left_padding"/>
+
+            <EditText
+                android:id="@+id/et_description"
+                android:layout_width="match_parent"
+                android:layout_height="145dp"
+                android:inputType="textMultiLine"
+                android:layout_marginRight="@dimen/right_padding"/>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/Padding"
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/description">
+
+            <TextView
+                android:layout_width="@dimen/tv_width_post"
+                android:layout_height="@dimen/et_height_post"
+                android:text="@string/name" />
+
+            <EditText
+                android:id="@+id/et_name"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/et_height_post" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/Padding"
+            android:id="@+id/genre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/name">
+
+            <TextView
+                android:layout_width="@dimen/tv_width_post"
+                android:layout_height="@dimen/et_height_post"
+                android:text="@string/genre"/>
+
+            <EditText
+                android:id="@+id/et_genre"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/et_height_post"/>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/Padding"
+            android:id="@+id/age"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/genre">
+
+            <TextView
+                android:layout_width="@dimen/tv_width_post"
+                android:layout_height="@dimen/et_height_post"
+                android:text="@string/age"/>
+
+            <EditText
+                android:id="@+id/et_age"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/et_height_post"/>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/Padding"
+            android:id="@+id/location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/age">
+
+            <TextView
+                android:layout_width="@dimen/tv_width_post"
+                android:layout_height="@dimen/et_height_post"
+                android:text="@string/location"/>
+
+            <EditText
+                android:id="@+id/et_location"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/et_height_post"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            style="@style/Padding"
+            android:id="@+id/breed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/location">
+
+            <TextView
+                android:layout_width="@dimen/tv_width_post"
+                android:layout_height="@dimen/et_height_post"
+                android:text="@string/breed"/>
+
+            <EditText
+                android:id="@+id/et_breed"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/et_height_post"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/send_button"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:orientation="horizontal"
+            android:layout_below="@id/breed">
+
+            <Button
+                android:id="@+id/btn_send"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:text="Send"
+                android:layout_marginLeft="130dp"
+                />
+
+        </LinearLayout>
 
     </RelativeLayout>
-
-    <LinearLayout
-        android:id="@+id/description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/photo">
-
-        <TextView
-            android:layout_width="@dimen/tv_width_post"
-            android:layout_height="@dimen/et_height_post"
-            android:text="@string/description"/>
-
-        <EditText
-            android:id="@+id/et_description"
-            android:layout_width="match_parent"
-            android:layout_height="145dp"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/description">
-
-        <TextView
-            android:layout_width="@dimen/tv_width_post"
-            android:layout_height="@dimen/et_height_post"
-            android:text="@string/name"/>
-
-        <EditText
-            android:id="@+id/et_name"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/et_height_post"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/genre"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/name">
-
-        <TextView
-            android:layout_width="@dimen/tv_width_post"
-            android:layout_height="@dimen/et_height_post"
-            android:text="@string/genre"/>
-
-        <EditText
-            android:id="@+id/et_genre"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/et_height_post"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/age"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/genre">
-
-        <TextView
-            android:layout_width="@dimen/tv_width_post"
-            android:layout_height="@dimen/et_height_post"
-            android:text="@string/age"/>
-
-        <EditText
-            android:id="@+id/et_age"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/et_height_post"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/location"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/age">
-
-        <TextView
-            android:layout_width="@dimen/tv_width_post"
-            android:layout_height="@dimen/et_height_post"
-            android:text="@string/location"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/send_button"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btn_send"
-            android:layout_width="60dp"
-            android:layout_height="match_parent"
-            android:text="Send"
-            android:layout_marginLeft="130dp"/>
-
-    </LinearLayout>
-
-
-</RelativeLayout>
+</ScrollView>
