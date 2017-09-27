@@ -15,7 +15,6 @@ import android.view.View;
 import com.appdoptame.appdoptame.FBAuth.FBLogin;
 import com.appdoptame.appdoptame.R;
 import com.appdoptame.appdoptame.model.Profile;
-import com.appdoptame.appdoptame.model.ProfileList;
 import com.appdoptame.appdoptame.utils.Utils;
 import com.appdoptame.appdoptame.view.Card;
 import com.facebook.login.LoginManager;
