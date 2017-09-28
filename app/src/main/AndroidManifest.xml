@@ -22,7 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Auth.Login">
+        <activity android:name=".Auth.Login"
+            android:theme="@style/LoginTheme">
         </activity>
         <activity
             android:name="com.facebook.FacebookActivity"
