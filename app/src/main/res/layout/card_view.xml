@@ -30,7 +30,7 @@
             <TextView
                 android:id="@+id/nameAgeTxt"
                 android:layout_width="wrap_content"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/primary_dark"
                 android:textSize="18dp"
                 android:textStyle="bold"
                 android:layout_height="wrap_content"/>
@@ -38,7 +38,7 @@
                 android:id="@+id/locationNameTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/primary_dark"
                 android:textSize="14dp"
                 android:textStyle="normal"/>
         </LinearLayout>

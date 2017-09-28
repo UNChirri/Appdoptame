@@ -10,4 +10,5 @@
     <dimen name="et_height_post">50dp</dimen>
     <dimen name="right_padding">15dp</dimen>
     <dimen name="left_padding">15dp</dimen>
+    <dimen name="smallTxtSize">10dp</dimen>
 </resources>
