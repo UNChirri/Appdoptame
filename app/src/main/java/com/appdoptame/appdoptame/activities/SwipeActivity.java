@@ -146,6 +146,13 @@ public class SwipeActivity extends AppCompatActivity {
                 intent.putExtra("Username", userName);
                 startActivity(intent);
                 return true;
+            case R.id.view_notifications:
+                intent = new Intent(this, NotificationActivity.class);
+                intent.putExtra("Username", userName);
+                intent.putExtra("profile0", profileList.get(0));
+                intent.putExtra("profile1", profileList.get(1));
+                startActivity(intent);
+                return  true;
         }
         return false;
     }
