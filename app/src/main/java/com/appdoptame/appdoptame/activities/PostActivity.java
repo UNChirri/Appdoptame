@@ -65,8 +65,6 @@ public class PostActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private ChildEventListener childEventListener;
 
-    private TextView tvName,tvGenre,tvAge,tvBreed,tvDescription,tvLocation;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,22 +81,6 @@ public class PostActivity extends AppCompatActivity {
         femaleButton = (Button) findViewById(R.id.btn_female);
         location = (EditText) findViewById(R.id.et_location);
         breed = (EditText) findViewById(R.id.et_breed);
-
-        tvName=(TextView) findViewById(R.id.tv_name);
-        tvGenre=(TextView) findViewById(R.id.tv_genre);
-        tvAge=(TextView)findViewById(R.id.tv_age);
-        tvBreed=(TextView)findViewById(R.id.tv_breed);
-        tvDescription=(TextView)findViewById(R.id.tv_description);
-        tvLocation=(TextView)findViewById(R.id.tv_location);
-
-        Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/cursive.ttf");
-
-        tvName.setTypeface(custom_font);
-        tvGenre.setTypeface(custom_font);
-        tvAge.setTypeface(custom_font);
-        tvBreed.setTypeface(custom_font);
-        tvDescription.setTypeface(custom_font);
-        tvLocation.setTypeface(custom_font);
 
         //Firebase inicialization
         firebaseDatabase = FirebaseDatabase.getInstance();
