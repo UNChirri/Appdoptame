@@ -19,6 +19,7 @@
                 android:id="@+id/iv_profile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
                 />
 
             <ImageButton
@@ -30,8 +31,10 @@
                 android:maxHeight="420dp"
                 android:scaleType="fitCenter"
                 android:layout_centerHorizontal="true"
-                android:src="@drawable/upload"
-                android:background="@null"/>
+                android:src="@drawable/upload_photo"
+                android:background="@null"
+
+                />
 
         </RelativeLayout>
 
@@ -40,13 +43,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/breed"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="5dp"
+            >
 
             <TextView
+                android:id="@+id/tv_description"
                 android:layout_width="@dimen/tv_width_post"
                 android:layout_height="@dimen/et_height_post"
                 android:text="@string/description"
-                android:layout_marginLeft="@dimen/left_padding"/>
+                android:layout_marginLeft="@dimen/left_padding"
+                style="@style/cursiveFormDescription"/>
 
             <EditText
                 android:id="@+id/et_description"
@@ -75,7 +81,8 @@
                 android:id="@+id/et_name"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/et_height_post"
-                android:background="@drawable/et_round"/>
+                android:background="@drawable/et_round"
+                android:paddingLeft="15dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -96,7 +103,8 @@
                 android:id="@+id/et_genre"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/et_height_post"
-                android:background="@drawable/et_round"/>
+                android:background="@drawable/et_round"
+                android:paddingLeft="15dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -110,13 +118,15 @@
                 android:id="@+id/tv_age"
                 android:layout_width="@dimen/tv_width_post"
                 android:layout_height="@dimen/et_height_post"
-                android:text="@string/age"/>
+                android:text="@string/age"
+                style="@style/cursiveForm"/>
 
             <EditText
                 android:id="@+id/et_age"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/et_height_post"
-                android:background="@drawable/et_round"/>
+                android:background="@drawable/et_round"
+                android:paddingLeft="15dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -127,15 +137,18 @@
             android:layout_below="@+id/age">
 
             <TextView
+                android:id="@+id/tv_location"
                 android:layout_width="@dimen/tv_width_post"
                 android:layout_height="@dimen/et_height_post"
-                android:text="@string/location"/>
+                android:text="@string/location"
+                style="@style/cursiveForm"/>
 
             <EditText
                 android:id="@+id/et_location"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/et_height_post"
-                android:background="@drawable/et_round"/>
+                android:background="@drawable/et_round"
+                android:paddingLeft="15dp"/>
 
         </LinearLayout>
 
@@ -148,19 +161,22 @@
             android:layout_below="@+id/location">
 
             <TextView
+                android:id="@+id/tv_breed"
                 android:layout_width="@dimen/tv_width_post"
                 android:layout_height="@dimen/et_height_post"
-                android:text="@string/breed"/>
+                android:text="@string/breed"
+                style="@style/cursiveForm"/>
 
             <EditText
                 android:id="@+id/et_breed"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/et_height_post"
-                android:background="@drawable/et_round"/>
+                android:background="@drawable/et_round"
+                android:paddingLeft="15dp"/>
 
         </LinearLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/send_button"
             android:layout_width="match_parent"
             android:layout_height="70dp"
@@ -168,17 +184,19 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:orientation="horizontal"
-            android:layout_below="@id/breed">
+            android:layout_below="@id/description"
+            android:layout_centerHorizontal="true">
 
             <Button
                 android:id="@+id/btn_send"
-                android:layout_width="60dp"
+                android:layout_width="170dp"
                 android:layout_height="match_parent"
-                android:text="Send"
-                android:layout_marginLeft="130dp"
-                />
+                android:background="@drawable/bone_btn"
+                android:layout_centerInParent="true"
+                android:enabled="false"
+                android:layout_marginTop="10dp"/>
 
-        </LinearLayout>
+        </RelativeLayout>
 
     </RelativeLayout>
 </ScrollView>

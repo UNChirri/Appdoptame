@@ -18,7 +18,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.appdoptame.appdoptame.FBAuth.FBLogin;
+import com.appdoptame.appdoptame.Auth.Login;
 import com.appdoptame.appdoptame.model.Profile;
 import com.appdoptame.appdoptame.R;
 import com.appdoptame.appdoptame.utils.Utils;
@@ -63,7 +63,7 @@ public class PostActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private ChildEventListener childEventListener;
 
-    private TextView tvName,tvGenre,tvAge;
+    private TextView tvName,tvGenre,tvAge,tvBreed,tvDescription,tvLocation;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -82,11 +82,19 @@ public class PostActivity extends AppCompatActivity {
         tvName=(TextView) findViewById(R.id.tv_name);
         tvGenre=(TextView) findViewById(R.id.tv_genre);
         tvAge=(TextView)findViewById(R.id.tv_age);
+        tvBreed=(TextView)findViewById(R.id.tv_breed);
+        tvDescription=(TextView)findViewById(R.id.tv_description);
+        tvLocation=(TextView)findViewById(R.id.tv_location);
+
         Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/cursive.ttf");
 
         tvName.setTypeface(custom_font);
         tvGenre.setTypeface(custom_font);
         tvAge.setTypeface(custom_font);
+        tvBreed.setTypeface(custom_font);
+        tvDescription.setTypeface(custom_font);
+        tvLocation.setTypeface(custom_font);
+
         //Firebase inicialization
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference().child("posts");
@@ -117,6 +125,11 @@ public class PostActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 // TODO Auto-generated method stub
+                if(s.toString().trim().length()==0){
+                    sendButton.setEnabled(false);
+                } else {
+                    sendButton.setEnabled(true);
+                }
 
             }
         });
@@ -214,7 +227,7 @@ public class PostActivity extends AppCompatActivity {
                 FirebaseAuth.getInstance().signOut();
                 LoginManager.getInstance().logOut();
                 try{
-                    intent = new Intent(this, FBLogin.class);
+                    intent = new Intent(this, Login.class);
                     startActivity(intent);
                 }catch(Exception e){
                     e.printStackTrace();
