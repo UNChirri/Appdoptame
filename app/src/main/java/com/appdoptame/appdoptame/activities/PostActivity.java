@@ -74,7 +74,7 @@ public class PostActivity extends AppCompatActivity {
         user = savedInstanceState.getString("Username");
         mPhoto = (ImageButton) findViewById(R.id.ib_photo);
         description = (EditText) findViewById(R.id.et_description);
-        genre = (EditText) findViewById(R.id.et_genre);
+    //genre = (EditText) findViewById(R.id.et_genre);
         age = (EditText) findViewById(R.id.et_age);
         name = (EditText) findViewById(R.id.et_name);
         sendButton = (Button) findViewById(R.id.btn_send);
@@ -105,14 +105,11 @@ public class PostActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
                 if(s.toString().trim().length()==0){
                     sendButton.setEnabled(false);
                 } else {
                     sendButton.setEnabled(true);
                 }
-
-
             }
 
             @Override
@@ -130,14 +127,14 @@ public class PostActivity extends AppCompatActivity {
                 } else {
                     sendButton.setEnabled(true);
                 }
-
             }
         });
+
+         // TODO conecction between front and back
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: Send messages on click
-                Log.d("message", photoUrl);
+
                 Profile profile = new Profile(user.toString(), description.getText().toString(), genre.getText().toString(), age.getText().toString(), name.getText().toString(), photoUrl);
                 databaseReference.push().setValue(profile);
                 // Clear input box

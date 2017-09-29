@@ -99,12 +99,25 @@
                 android:text="@string/genre"
                 style="@style/cursiveForm"/>
 
+            <Button
+                android:layout_width="45dp"
+                android:layout_height="60dp"
+                android:background="@drawable/female"
+                android:layout_marginLeft="40dp"/>
+
+            <Button
+                android:layout_width="45dp"
+                android:layout_height="60dp"
+                android:background="@drawable/male"
+                android:layout_marginLeft="40dp"/>
+            <!--
             <EditText
                 android:id="@+id/et_genre"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/et_height_post"
                 android:background="@drawable/et_round"
                 android:paddingLeft="15dp"/>
+                -->
         </LinearLayout>
 
         <LinearLayout
