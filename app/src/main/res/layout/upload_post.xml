@@ -100,12 +100,14 @@
                 style="@style/cursiveForm"/>
 
             <Button
+                android:id="@+id/btn_female"
                 android:layout_width="45dp"
                 android:layout_height="60dp"
                 android:background="@drawable/female"
                 android:layout_marginLeft="40dp"/>
 
             <Button
+                android:id="@+id/btn_male"
                 android:layout_width="45dp"
                 android:layout_height="60dp"
                 android:background="@drawable/male"

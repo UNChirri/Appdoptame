@@ -49,13 +49,15 @@ public class PostActivity extends AppCompatActivity {
     private String user;
     private ImageButton mPhoto;
     private EditText description;
-    private EditText genre;
     private EditText age;
     private EditText name;
     private String photoUrl;
-    private String location;
+    private EditText location;
     private Button sendButton;
-
+    private Button femaleButton;
+    private Button maleButton;
+    private EditText breed;
+    String genre;
     //Firebase
     private FirebaseStorage firebaseStorage;
     private StorageReference storageReference;
@@ -74,10 +76,13 @@ public class PostActivity extends AppCompatActivity {
         user = savedInstanceState.getString("Username");
         mPhoto = (ImageButton) findViewById(R.id.ib_photo);
         description = (EditText) findViewById(R.id.et_description);
-    //genre = (EditText) findViewById(R.id.et_genre);
         age = (EditText) findViewById(R.id.et_age);
         name = (EditText) findViewById(R.id.et_name);
         sendButton = (Button) findViewById(R.id.btn_send);
+        maleButton = (Button) findViewById(R.id.btn_male);
+        femaleButton = (Button) findViewById(R.id.btn_female);
+        location = (EditText) findViewById(R.id.et_location);
+        breed = (EditText) findViewById(R.id.et_breed);
 
         tvName=(TextView) findViewById(R.id.tv_name);
         tvGenre=(TextView) findViewById(R.id.tv_genre);
@@ -130,20 +135,34 @@ public class PostActivity extends AppCompatActivity {
             }
         });
 
+
+        femaleButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                maleButton.setEnabled(false);
+                genre = "Female";
+            }
+        });
+
+        maleButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                femaleButton.setEnabled(false);
+                genre = "Male";
+            }
+        });
+
          // TODO conecction between front and back
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Profile profile = new Profile(user.toString(), description.getText().toString(), genre.getText().toString(), age.getText().toString(), name.getText().toString(), photoUrl);
+                Profile profile = new Profile(user, name.getText().toString(), genre , age.getText().toString(), photoUrl, location.getText().toString(), breed.getText().toString(), description.getText().toString());
                 databaseReference.push().setValue(profile);
                 // Clear input box
-
-                description.setText("");
-                genre.setText("");
-                age.setText("");
-                name.setText("");
+                goMainPage();
             }
+
         });
 
 
@@ -238,5 +257,11 @@ public class PostActivity extends AppCompatActivity {
                 return true;
         }
         return false;
+    }
+
+    private void goMainPage(){
+        Intent intent = new Intent(this, TestActivity.class);
+        intent.putExtra("Username", user);
+        startActivity(intent);
     }
 }
