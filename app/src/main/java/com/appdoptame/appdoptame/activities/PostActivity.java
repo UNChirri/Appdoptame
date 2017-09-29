@@ -164,7 +164,8 @@ public class PostActivity extends AppCompatActivity {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Profile profile = dataSnapshot.getValue(Profile.class);
-                SwipeActivity.profileList.add(profile);
+                if (profile != null)
+                    SwipeActivity.profileList.add(profile);
             }
 
             @Override
