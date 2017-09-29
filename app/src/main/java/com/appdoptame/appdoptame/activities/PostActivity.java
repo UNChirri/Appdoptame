@@ -1,6 +1,7 @@
 package com.appdoptame.appdoptame.activities;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,10 +15,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import com.appdoptame.appdoptame.Auth.Login;
+import com.appdoptame.appdoptame.FBAuth.FBLogin;
 import com.appdoptame.appdoptame.model.Profile;
 import com.appdoptame.appdoptame.R;
+import com.appdoptame.appdoptame.utils.Utils;
 import com.facebook.login.LoginManager;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,9 +30,13 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by jufarangoma on 17/09/17.
@@ -55,6 +63,8 @@ public class PostActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private ChildEventListener childEventListener;
 
+    private TextView tvName,tvGenre,tvAge;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +78,15 @@ public class PostActivity extends AppCompatActivity {
         age = (EditText) findViewById(R.id.et_age);
         name = (EditText) findViewById(R.id.et_name);
         sendButton = (Button) findViewById(R.id.btn_send);
+
+        tvName=(TextView) findViewById(R.id.tv_name);
+        tvGenre=(TextView) findViewById(R.id.tv_genre);
+        tvAge=(TextView)findViewById(R.id.tv_age);
+        Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/cursive.ttf");
+
+        tvName.setTypeface(custom_font);
+        tvGenre.setTypeface(custom_font);
+        tvAge.setTypeface(custom_font);
         //Firebase inicialization
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference().child("posts");
@@ -195,7 +214,7 @@ public class PostActivity extends AppCompatActivity {
                 FirebaseAuth.getInstance().signOut();
                 LoginManager.getInstance().logOut();
                 try{
-                    intent = new Intent(this, Login.class);
+                    intent = new Intent(this, FBLogin.class);
                     startActivity(intent);
                 }catch(Exception e){
                     e.printStackTrace();

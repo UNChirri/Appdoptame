@@ -7,7 +7,8 @@
     android:scrollbars="vertical">
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="horizontal" android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="#918868">
 
         <RelativeLayout
             android:id="@+id/photo"
@@ -38,7 +39,8 @@
             android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/photo">
+            android:layout_below="@+id/breed"
+            android:layout_marginTop="5dp">
 
             <TextView
                 android:layout_width="@dimen/tv_width_post"
@@ -51,7 +53,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="145dp"
                 android:inputType="textMultiLine"
-                android:layout_marginRight="@dimen/right_padding"/>
+                android:layout_marginRight="@dimen/right_padding"
+                android:background="@drawable/et_round"/>
         </LinearLayout>
 
         <LinearLayout
@@ -59,17 +62,20 @@
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/description">
+            android:layout_below="@+id/photo">
 
             <TextView
+                android:id="@+id/tv_name"
                 android:layout_width="@dimen/tv_width_post"
                 android:layout_height="@dimen/et_height_post"
-                android:text="@string/name" />
+                android:text="@string/name"
+                style="@style/cursiveForm"/>
 
             <EditText
                 android:id="@+id/et_name"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/et_height_post" />
+                android:layout_height="@dimen/et_height_post"
+                android:background="@drawable/et_round"/>
         </LinearLayout>
 
         <LinearLayout
@@ -80,14 +86,17 @@
             android:layout_below="@+id/name">
 
             <TextView
+                android:id="@+id/tv_genre"
                 android:layout_width="@dimen/tv_width_post"
                 android:layout_height="@dimen/et_height_post"
-                android:text="@string/genre"/>
+                android:text="@string/genre"
+                style="@style/cursiveForm"/>
 
             <EditText
                 android:id="@+id/et_genre"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/et_height_post"/>
+                android:layout_height="@dimen/et_height_post"
+                android:background="@drawable/et_round"/>
         </LinearLayout>
 
         <LinearLayout
@@ -98,6 +107,7 @@
             android:layout_below="@+id/genre">
 
             <TextView
+                android:id="@+id/tv_age"
                 android:layout_width="@dimen/tv_width_post"
                 android:layout_height="@dimen/et_height_post"
                 android:text="@string/age"/>
@@ -105,7 +115,8 @@
             <EditText
                 android:id="@+id/et_age"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/et_height_post"/>
+                android:layout_height="@dimen/et_height_post"
+                android:background="@drawable/et_round"/>
         </LinearLayout>
 
         <LinearLayout
@@ -123,7 +134,8 @@
             <EditText
                 android:id="@+id/et_location"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/et_height_post"/>
+                android:layout_height="@dimen/et_height_post"
+                android:background="@drawable/et_round"/>
 
         </LinearLayout>
 
@@ -143,7 +155,8 @@
             <EditText
                 android:id="@+id/et_breed"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/et_height_post"/>
+                android:layout_height="@dimen/et_height_post"
+                android:background="@drawable/et_round"/>
 
         </LinearLayout>
 
