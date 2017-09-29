@@ -26,15 +26,28 @@ public class ProfileActivity extends AppCompatActivity {
 
         sliderShow = (SliderLayout) findViewById(R.id.slider);
 
-        for(String url:profile.getPhotos())
+        if(profile.getPhotos() != null)
+        {
+            for(String url:profile.getPhotos())
+            {
+                TextSliderView textSliderView = new TextSliderView(this);
+                textSliderView
+                        .description(profile.getName())
+                        .image(url);
+
+                sliderShow.addSlider(textSliderView);
+            }
+        }
+        else
         {
             TextSliderView textSliderView = new TextSliderView(this);
             textSliderView
                     .description(profile.getName())
-                    .image(url);
+                    .image(profile.getPhotoUrl());
 
             sliderShow.addSlider(textSliderView);
         }
+
 
         TextView tv = (TextView) findViewById(R.id.name);
         tv.setText(profile.getName());
