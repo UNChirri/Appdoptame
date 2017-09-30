@@ -1,5 +1,6 @@
 package com.appdoptame.appdoptame.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -149,6 +151,12 @@ public class PostActivity extends Fragment {
                 Profile profile = new Profile(user, name.getText().toString(), genre , age.getText().toString(), photoUrl, location.getText().toString(), breed.getText().toString(), description.getText().toString());
                 databaseReference.push().setValue(profile);
                 // Clear input box
+                InputMethodManager inputManager =
+                        (InputMethodManager) getContext().
+                                getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputManager.hideSoftInputFromWindow(
+                        getActivity().getCurrentFocus().getWindowToken(),
+                        InputMethodManager.HIDE_NOT_ALWAYS);
                 removeFragment();
             }
 
