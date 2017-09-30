@@ -119,9 +119,7 @@ public class BaseActivity extends AppCompatActivity
         NotificationActivity notificationFragment = NotificationActivity.newInstance();
         Bundle bundle = new Bundle();
         bundle.putSerializable("profile0",swipeFragment.getProfileList().get(0));
-        bundle.putSerializable("profile0",swipeFragment.getProfileList().get(1));
-        Log.d("BaseActivity",swipeFragment.getProfileList().get(0).toString());
-        Log.d("BaseActivity",swipeFragment.getProfileList().get(1).toString());
+        bundle.putSerializable("profile1",swipeFragment.getProfileList().get(1));
         notificationFragment.setArguments(bundle);
         fragmentTransaction.add(R.id.fragment_container, notificationFragment);
         fragmentTransaction.commit();
@@ -190,6 +188,7 @@ public class BaseActivity extends AppCompatActivity
             try{
                 Intent out = new Intent(this, Login.class);
                 startActivity(out);
+                finish();
             }catch(Exception e){
                 e.printStackTrace();
             }

@@ -52,6 +52,7 @@ public class Login extends AppCompatActivity implements FBLoginLogic.OnFragmentI
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if (firebaseUser != null){
             goMainPage(firebaseUser);
+            finish();
         }
     }
 }

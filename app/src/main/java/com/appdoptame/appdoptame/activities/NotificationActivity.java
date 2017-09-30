@@ -50,9 +50,11 @@ public class NotificationActivity extends Fragment {
         userName = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
 
         // Defined Array values to show in ListView
-        Bundle extras = getActivity().getIntent().getExtras();
-        Profile profile0 = (Profile)extras.getSerializable("profile0");
-        Profile profile1 = (Profile)extras.getSerializable("profile1");
+        Bundle bundle = this.getArguments();
+
+        Profile profile0 = (Profile)bundle.getSerializable("profile0");
+        Profile profile1 = (Profile)bundle.getSerializable("profile1");
+
 
         Log.d("Notification activity",userName);
         Log.d("Notification activity",profile0.toString());
@@ -105,6 +107,7 @@ public class NotificationActivity extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
     }
 
