@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -147,6 +149,7 @@ public class PostActivity extends Fragment {
                 Profile profile = new Profile(user, name.getText().toString(), genre , age.getText().toString(), photoUrl, location.getText().toString(), breed.getText().toString(), description.getText().toString());
                 databaseReference.push().setValue(profile);
                 // Clear input box
+                removeFragment();
             }
 
         });
@@ -211,5 +214,11 @@ public class PostActivity extends Fragment {
             }
         });
 
+    }
+
+    private void removeFragment(){
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.remove(this).commit();
     }
 }
