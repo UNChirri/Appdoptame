@@ -23,6 +23,7 @@ import com.mindorks.placeholderview.SwipeDecor;
 import com.mindorks.placeholderview.SwipePlaceHolderView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class SwipeActivity extends Fragment {
@@ -119,6 +120,7 @@ public class SwipeActivity extends Fragment {
     }
 
     public void cardView(){
+        Collections.shuffle(profileList);
         for(Profile profile : profileList){
             mSwipeView.addView(new Card(mContext, profile, mSwipeView));
         }
