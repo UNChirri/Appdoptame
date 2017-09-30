@@ -3,15 +3,20 @@ package com.appdoptame.appdoptame.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 
+import com.appdoptame.appdoptame.Auth.FBLoginLogic;
 import com.appdoptame.appdoptame.Auth.Login;
 import com.appdoptame.appdoptame.R;
 import com.appdoptame.appdoptame.model.Profile;
@@ -30,7 +35,7 @@ import com.mindorks.placeholderview.SwipePlaceHolderView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SwipeActivity extends AppCompatActivity {
+public class SwipeActivity extends Fragment {
 
     private SwipePlaceHolderView mSwipeView;
     private Context mContext;
@@ -39,22 +44,38 @@ public class SwipeActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     public static List<Profile> profileList;
 
+    public SwipeActivity() {
+        // Required empty public constructor
+    }
+
+
+    public static SwipeActivity newInstance() {
+        SwipeActivity fragment = new SwipeActivity();
+        return fragment;
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_swipe);
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        View view = inflater.inflate(R.layout.activity_swipe, container, false);
 
         //Firebase inicialization
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference().child("posts");
         profileList = new ArrayList<>();
 
-        mSwipeView = (SwipePlaceHolderView)findViewById(R.id.swipeView);
-        mContext = getApplicationContext();
-        savedInstanceState = getIntent().getExtras();
+        mSwipeView = (SwipePlaceHolderView)view.findViewById(R.id.swipeView);
+        mContext = getActivity().getApplicationContext();
+        savedInstanceState = getActivity().getIntent().getExtras();
         userName = savedInstanceState.getString("Username");
         int bottomMargin = Utils.dpToPx(160);
-        Point windowSize = Utils.getDisplaySize(getWindowManager());
+        Point windowSize = Utils.getDisplaySize(getActivity().getWindowManager());
         mSwipeView.getBuilder()
                 .setDisplayViewCount(3)
                 .setIsUndoEnabled(true)
@@ -86,26 +107,27 @@ public class SwipeActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.rejectBtn).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.rejectBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mSwipeView.doSwipe(false);
             }
         });
 
-        findViewById(R.id.acceptBtn).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.acceptBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mSwipeView.doSwipe(true);
             }
         });
 
-        findViewById(R.id.undoBtn).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.undoBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mSwipeView.undoLastSwipe();
             }
         });
+        return view;
     }
 
     public void cardView(){
@@ -114,46 +136,4 @@ public class SwipeActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.options_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent;
-        switch (item.getItemId()) {
-            case R.id.new_post:
-                intent = new Intent(this, TestActivity.class);
-                intent.putExtra("Username", userName);
-                startActivity(intent);
-                return true;
-            case R.id.logout:
-                FirebaseAuth.getInstance().signOut();
-                LoginManager.getInstance().logOut();
-                try{
-                    intent = new Intent(this, Login.class);
-                    startActivity(intent);
-                }catch(Exception e){
-                    e.printStackTrace();
-                }
-                return true;
-            case R.id.view_posts:
-                intent = new Intent(this, SwipeActivity.class);
-                intent.putExtra("Username", userName);
-                startActivity(intent);
-                return true;
-            case R.id.view_notifications:
-                intent = new Intent(this, NotificationActivity.class);
-                intent.putExtra("Username", userName);
-                intent.putExtra("profile0", profileList.get(0));
-                intent.putExtra("profile1", profileList.get(1));
-                startActivity(intent);
-                return  true;
-        }
-        return false;
-    }
 }

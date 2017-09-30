@@ -19,6 +19,11 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
+    <FrameLayout
+        android:id="@+id/swipefragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        ></FrameLayout>
 
     <include layout="@layout/content_base" />
 

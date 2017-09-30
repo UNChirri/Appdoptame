@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
+import com.appdoptame.appdoptame.Base.BaseActivity;
 import com.appdoptame.appdoptame.R;
 import com.appdoptame.appdoptame.activities.SwipeActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -41,7 +42,7 @@ public class Login extends AppCompatActivity implements FBLoginLogic.OnFragmentI
     }
 
     private void goMainPage(FirebaseUser user){
-        Intent intent = new Intent(this, SwipeActivity.class);
+        Intent intent = new Intent(this, BaseActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("Username", user.getUid());
         startActivity(intent);
