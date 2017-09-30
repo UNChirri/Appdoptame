@@ -1,29 +1,19 @@
 package com.appdoptame.appdoptame.activities;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Point;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.appdoptame.appdoptame.Auth.FBLoginLogic;
-import com.appdoptame.appdoptame.Auth.Login;
 import com.appdoptame.appdoptame.R;
 import com.appdoptame.appdoptame.model.Profile;
 import com.appdoptame.appdoptame.utils.Utils;
 import com.appdoptame.appdoptame.view.Card;
-import com.facebook.login.LoginManager;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -39,10 +29,10 @@ public class SwipeActivity extends Fragment {
 
     private SwipePlaceHolderView mSwipeView;
     private Context mContext;
-    private String userName;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     public static List<Profile> profileList;
+    private boolean isInFront;
 
     public SwipeActivity() {
         // Required empty public constructor
@@ -72,8 +62,6 @@ public class SwipeActivity extends Fragment {
 
         mSwipeView = (SwipePlaceHolderView)view.findViewById(R.id.swipeView);
         mContext = getActivity().getApplicationContext();
-        savedInstanceState = getActivity().getIntent().getExtras();
-        userName = savedInstanceState.getString("Username");
         int bottomMargin = Utils.dpToPx(160);
         Point windowSize = Utils.getDisplaySize(getActivity().getWindowManager());
         mSwipeView.getBuilder()
@@ -136,4 +124,22 @@ public class SwipeActivity extends Fragment {
         }
     }
 
+    public List<Profile> getProfileList(){
+        return profileList;
+    }
+
+    public boolean getIsInFront(){
+        return isInFront;
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        isInFront = true;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        isInFront = false;
+    }
 }

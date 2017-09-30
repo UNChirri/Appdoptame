@@ -10,6 +10,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -25,6 +26,8 @@ import android.widget.TextView;
 import com.appdoptame.appdoptame.Auth.FBLoginLogic;
 import com.appdoptame.appdoptame.Auth.Login;
 import com.appdoptame.appdoptame.R;
+import com.appdoptame.appdoptame.activities.NotificationActivity;
+import com.appdoptame.appdoptame.activities.PostActivity;
 import com.appdoptame.appdoptame.activities.SwipeActivity;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
@@ -42,8 +45,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class BaseActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    ImageView profileImage;
     DrawerLayout drawer;
+    SwipeActivity swipeFragment;
+
 
     /**
      * Not working because the views are inside a header
@@ -71,9 +75,7 @@ public class BaseActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-
-
+        
 
         ButterKnife.bind(this);
 
@@ -106,8 +108,30 @@ public class BaseActivity extends AppCompatActivity
     private void swipeFragmentInvocation(){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        SwipeActivity swipeFragment = SwipeActivity.newInstance();
-        fragmentTransaction.add(R.id.swipefragment_container, swipeFragment);
+        swipeFragment = SwipeActivity.newInstance();
+        fragmentTransaction.add(R.id.fragment_container, swipeFragment);
+        fragmentTransaction.commit();
+    }
+
+    private void notificationFragmentInvocation(){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        NotificationActivity notificationFragment = NotificationActivity.newInstance();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("profile0",swipeFragment.getProfileList().get(0));
+        bundle.putSerializable("profile0",swipeFragment.getProfileList().get(1));
+        Log.d("BaseActivity",swipeFragment.getProfileList().get(0).toString());
+        Log.d("BaseActivity",swipeFragment.getProfileList().get(1).toString());
+        notificationFragment.setArguments(bundle);
+        fragmentTransaction.add(R.id.fragment_container, notificationFragment);
+        fragmentTransaction.commit();
+    }
+
+    private void postFragmentInvocation(){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        PostActivity postFragment = PostActivity.newInstance();
+        fragmentTransaction.add(R.id.fragment_container, postFragment);
         fragmentTransaction.commit();
     }
 
@@ -127,7 +151,16 @@ public class BaseActivity extends AppCompatActivity
         getMenuInflater().inflate(R.menu.base, menu);
         return true;
     }
-
+    /*
+     * Hides the three dots right menu
+     */
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem item= menu.findItem(R.id.action_settings);
+        item.setVisible(false);
+        super.onPrepareOptionsMenu(menu);
+        return true;
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -150,7 +183,7 @@ public class BaseActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.profileapp) {
-            // Handle the camera action
+
         } else if (id == R.id.nav_logout) {
             FirebaseAuth.getInstance().signOut();
             LoginManager.getInstance().logOut();
@@ -160,6 +193,12 @@ public class BaseActivity extends AppCompatActivity
             }catch(Exception e){
                 e.printStackTrace();
             }
+        } else if(id == R.id.nav_notifications) {
+            notificationFragmentInvocation();
+        } else if(id == R.id.nav_upload){
+            postFragmentInvocation();
+        } else if(id == R.id.nav_home){
+            swipeFragmentInvocation();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -187,5 +226,4 @@ public class BaseActivity extends AppCompatActivity
             return myBitmap;
         }
     }
-
 }

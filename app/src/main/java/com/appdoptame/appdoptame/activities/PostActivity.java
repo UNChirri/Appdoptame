@@ -1,28 +1,20 @@
 package com.appdoptame.appdoptame.activities;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.appdoptame.appdoptame.Auth.Login;
 import com.appdoptame.appdoptame.model.Profile;
 import com.appdoptame.appdoptame.R;
-import com.appdoptame.appdoptame.utils.Utils;
-import com.facebook.login.LoginManager;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -30,7 +22,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -42,7 +33,7 @@ import java.util.List;
  * Created by jufarangoma on 17/09/17.
  */
 
-public class PostActivity extends AppCompatActivity {
+public class PostActivity extends Fragment {
 
     private static final int RC_PHOTO_PICKER = 2;
 
@@ -65,29 +56,43 @@ public class PostActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private ChildEventListener childEventListener;
 
+    public PostActivity() {
+        // Required empty public constructor
+    }
+
+
+    public static PostActivity newInstance() {
+        PostActivity fragment = new PostActivity();
+        return fragment;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.upload_post);
-        savedInstanceState = getIntent().getExtras();
 
-        user = savedInstanceState.getString("Username");
-        mPhoto = (ImageButton) findViewById(R.id.ib_photo);
-        description = (EditText) findViewById(R.id.et_description);
-        age = (EditText) findViewById(R.id.et_age);
-        name = (EditText) findViewById(R.id.et_name);
-        sendButton = (Button) findViewById(R.id.btn_send);
-        maleButton = (Button) findViewById(R.id.btn_male);
-        femaleButton = (Button) findViewById(R.id.btn_female);
-        location = (EditText) findViewById(R.id.et_location);
-        breed = (EditText) findViewById(R.id.et_breed);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        View view = inflater.inflate(R.layout.upload_post, container, false);
+
+        user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        mPhoto = (ImageButton) view.findViewById(R.id.ib_photo);
+        description = (EditText) view.findViewById(R.id.et_description);
+        age = (EditText) view.findViewById(R.id.et_age);
+        name = (EditText) view.findViewById(R.id.et_name);
+        sendButton = (Button) view.findViewById(R.id.btn_send);
+        maleButton = (Button) view.findViewById(R.id.btn_male);
+        femaleButton = (Button) view.findViewById(R.id.btn_female);
+        location = (EditText) view.findViewById(R.id.et_location);
+        breed = (EditText) view.findViewById(R.id.et_breed);
 
         //Firebase inicialization
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference().child("posts");
         firebaseStorage = FirebaseStorage.getInstance();
         storageReference = firebaseStorage.getReference().child("animals_photos");
-
         description.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -134,7 +139,7 @@ public class PostActivity extends AppCompatActivity {
             }
         });
 
-         // TODO conecction between front and back
+        // TODO conecction between front and back
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -142,7 +147,6 @@ public class PostActivity extends AppCompatActivity {
                 Profile profile = new Profile(user, name.getText().toString(), genre , age.getText().toString(), photoUrl, location.getText().toString(), breed.getText().toString(), description.getText().toString());
                 databaseReference.push().setValue(profile);
                 // Clear input box
-                goMainPage();
             }
 
         });
@@ -186,16 +190,20 @@ public class PostActivity extends AppCompatActivity {
 
             }
         };
-
         databaseReference.addChildEventListener(childEventListener);
+
+
+
+
+        return view;
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Uri selectedImage = data.getData();
         final StorageReference photoRef = storageReference.child(selectedImage.getLastPathSegment());
-        photoRef.putFile(selectedImage).addOnSuccessListener(this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
+        photoRef.putFile(selectedImage).addOnSuccessListener(getActivity(), new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 Uri download = taskSnapshot.getDownloadUrl();
@@ -203,47 +211,5 @@ public class PostActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.options_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent;
-        switch (item.getItemId()) {
-            case R.id.new_post:
-                intent = new Intent(this, TestActivity.class);
-                intent.putExtra("Username", user);
-                startActivity(intent);
-                return true;
-            case R.id.logout:
-                FirebaseAuth.getInstance().signOut();
-                LoginManager.getInstance().logOut();
-                try{
-                    intent = new Intent(this, Login.class);
-                    startActivity(intent);
-                }catch(Exception e){
-                    e.printStackTrace();
-                }
-                return true;
-            case R.id.view_posts:
-                intent = new Intent(this, SwipeActivity.class);
-                intent.putExtra("Username", user);
-                startActivity(intent);
-                return true;
-        }
-        return false;
-    }
-
-    private void goMainPage(){
-        Intent intent = new Intent(this, TestActivity.class);
-        intent.putExtra("Username", user);
-        startActivity(intent);
     }
 }
