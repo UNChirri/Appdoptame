@@ -33,6 +33,9 @@ public class Card {
     @View(R.id.profileImageView)
     private ImageView profileImageView;
 
+    @View(R.id.tv_genre)
+    private ImageView genreIV;
+
     @View(R.id.nameAgeTxt)
     private TextView nameAgeTxt;
 
@@ -57,6 +60,11 @@ public class Card {
                 .into(profileImageView);
         nameAgeTxt.setText(mProfile.getName() + ", " + mProfile.getAge());
         locationNameTxt.setText(mProfile.getLocation());
+        if (mProfile.getGenre().equals("Female")){
+            genreIV.setImageResource(R.drawable.female);
+        }else{
+            genreIV.setImageResource(R.drawable.male);
+        }
     }
 
     @Click(R.id.profileImageView)
