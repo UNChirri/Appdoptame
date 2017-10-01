@@ -9,7 +9,7 @@
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="horizontal" android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#8C54E8">
+        android:background="@drawable/background_home">
 
         <RelativeLayout
             android:id="@+id/photo"
@@ -54,7 +54,7 @@
                 android:layout_height="145dp"
                 android:inputType="textMultiLine"
                 android:background="@drawable/et_round"
-                android:hint="@string/description"
+                android:hint="Descripción"
                 android:paddingLeft="15dp"
                 />
         </LinearLayout>
@@ -72,7 +72,7 @@
                 android:layout_height="@dimen/et_height_post"
                 android:background="@drawable/et_round"
                 android:paddingLeft="15dp"
-                android:hint="Name"/>
+                android:hint="Nombre"/>
         </LinearLayout>
 
         <LinearLayout
@@ -113,7 +113,7 @@
                 android:layout_height="@dimen/et_height_post"
                 android:background="@drawable/et_round"
                 android:paddingLeft="15dp"
-                android:hint="Age"/>
+                android:hint="Edad"/>
         </LinearLayout>
 
         <LinearLayout
@@ -129,7 +129,7 @@
                 android:layout_height="@dimen/et_height_post"
                 android:background="@drawable/et_round"
                 android:paddingLeft="15dp"
-                android:hint="Location"/>
+                android:hint="Lugar"/>
 
         </LinearLayout>
 
@@ -147,7 +147,7 @@
                 android:layout_height="@dimen/et_height_post"
                 android:background="@drawable/et_round"
                 android:paddingLeft="15dp"
-                android:hint="Breed"/>
+                android:hint="Raza"/>
 
         </LinearLayout>
 

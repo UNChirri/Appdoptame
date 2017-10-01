@@ -6,6 +6,6 @@
     <item>
         <bitmap
             android:gravity="center"
-            android:src="@mipmap/appdoptame_logo" />
+            android:src="@mipmap/icon" />
     </item>
 </layer-list>
