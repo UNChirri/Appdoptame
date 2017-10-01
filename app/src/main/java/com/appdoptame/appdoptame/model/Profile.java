@@ -43,6 +43,7 @@ public  class Profile implements Serializable{
     @Expose
     private String breed;
 
+
     @SerializedName("photos")
     @Expose
     private List<String> photos;
