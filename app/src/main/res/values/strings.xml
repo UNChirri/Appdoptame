@@ -22,10 +22,10 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Settings</string>
-    <string name="prof">Profile</string>
-    <string name="logout">Logout</string>
-    <string name="upload_pet">Upload pet</string>
-    <string name="notifications">View notifications</string>
-    <string name="pet_house">Home</string>
+    <string name="prof">Perfil</string>
+    <string name="logout">Cerrar sesión</string>
+    <string name="upload_pet">Subir animalito</string>
+    <string name="notifications">Ver notificaciones</string>
+    <string name="pet_house">Inicio</string>
     <string name="breed">Breed</string>
 </resources>
