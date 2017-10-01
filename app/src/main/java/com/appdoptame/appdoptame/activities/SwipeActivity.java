@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Point;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -113,7 +115,11 @@ public class SwipeActivity extends Fragment {
         view.findViewById(R.id.undoBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mSwipeView.undoLastSwipe();
+                //mSwipeView.undoLastSwipe();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.add(R.id.fragment_container, SwipeActivity.newInstance(),"swipe_fragment");
+                fragmentTransaction.commit();
             }
         });
         return view;
@@ -130,18 +136,4 @@ public class SwipeActivity extends Fragment {
         return profileList;
     }
 
-    public boolean getIsInFront(){
-        return isInFront;
-    }
-    @Override
-    public void onResume() {
-        super.onResume();
-        isInFront = true;
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        isInFront = false;
-    }
 }
