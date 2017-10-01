@@ -109,7 +109,7 @@ public class BaseActivity extends AppCompatActivity
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         swipeFragment = SwipeActivity.newInstance();
-        fragmentTransaction.add(R.id.fragment_container, swipeFragment);
+        fragmentTransaction.add(R.id.fragment_container, swipeFragment,"swipe_fragment");
         fragmentTransaction.commit();
     }
 
@@ -121,7 +121,7 @@ public class BaseActivity extends AppCompatActivity
         bundle.putSerializable("profile0",swipeFragment.getProfileList().get(0));
         bundle.putSerializable("profile1",swipeFragment.getProfileList().get(1));
         notificationFragment.setArguments(bundle);
-        fragmentTransaction.add(R.id.fragment_container, notificationFragment);
+        fragmentTransaction.add(R.id.fragment_container, notificationFragment,"notification_fragment");
         fragmentTransaction.commit();
     }
 
@@ -129,7 +129,7 @@ public class BaseActivity extends AppCompatActivity
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         PostActivity postFragment = PostActivity.newInstance();
-        fragmentTransaction.add(R.id.fragment_container, postFragment);
+        fragmentTransaction.add(R.id.fragment_container, postFragment,"post_fragment");
         fragmentTransaction.commit();
     }
 
@@ -193,11 +193,28 @@ public class BaseActivity extends AppCompatActivity
                 e.printStackTrace();
             }
         } else if(id == R.id.nav_notifications) {
-            notificationFragmentInvocation();
+            Fragment dummy = getSupportFragmentManager().findFragmentByTag("notification_fragment");
+            if(dummy == null) {
+                notificationFragmentInvocation();
+            }else{
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,dummy).commit();
+            }
+
         } else if(id == R.id.nav_upload){
-            postFragmentInvocation();
+            Fragment dummy = getSupportFragmentManager().findFragmentByTag("post_fragment");
+            if(dummy == null) {
+                postFragmentInvocation();
+            }else{
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,dummy).commit();
+            }
+
         } else if(id == R.id.nav_home){
-            swipeFragmentInvocation();
+            Fragment dummy = getSupportFragmentManager().findFragmentByTag("swipe_fragment");
+            if(dummy == null) {
+                swipeFragmentInvocation();
+            }else{
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,dummy).commit();
+            }
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
