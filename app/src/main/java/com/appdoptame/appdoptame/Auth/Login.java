@@ -10,12 +10,12 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.appdoptame.appdoptame.Base.BaseActivity;
 import com.appdoptame.appdoptame.R;
-import com.appdoptame.appdoptame.activities.SwipeActivity;
+import com.appdoptame.appdoptame.fragments.FBLoginFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 
-public class Login extends AppCompatActivity implements FBLoginLogic.OnFragmentInteractionListener {
+public class Login extends AppCompatActivity implements FBLoginFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,7 @@ public class Login extends AppCompatActivity implements FBLoginLogic.OnFragmentI
         checkSession();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        FBLoginLogic fbLogicFragment = FBLoginLogic.newInstance();
+        FBLoginFragment fbLogicFragment = FBLoginFragment.newInstance();
         fragmentTransaction.add(R.id.fragment_container, fbLogicFragment);
         fragmentTransaction.commit();
 

@@ -1,4 +1,4 @@
-package com.appdoptame.appdoptame.activities;
+package com.appdoptame.appdoptame.fragments;
 
 import android.content.Context;
 import android.content.Intent;
@@ -30,14 +30,11 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by jufarangoma on 17/09/17.
  */
 
-public class PostActivity extends Fragment {
+public class PostFragment extends Fragment {
 
     private static final int RC_PHOTO_PICKER = 2;
 
@@ -60,13 +57,13 @@ public class PostActivity extends Fragment {
     private DatabaseReference databaseReference;
     private ChildEventListener childEventListener;
 
-    public PostActivity() {
+    public PostFragment() {
         // Required empty public constructor
     }
 
 
-    public static PostActivity newInstance() {
-        PostActivity fragment = new PostActivity();
+    public static PostFragment newInstance() {
+        PostFragment fragment = new PostFragment();
         return fragment;
     }
 
@@ -178,7 +175,7 @@ public class PostActivity extends Fragment {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Profile profile = dataSnapshot.getValue(Profile.class);
                 if (profile != null)
-                    SwipeActivity.profileList.add(profile);
+                    SwipeFragment.profileList.add(profile);
             }
 
             @Override

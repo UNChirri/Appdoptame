@@ -1,4 +1,4 @@
-package com.appdoptame.appdoptame.activities;
+package com.appdoptame.appdoptame.fragments;
 
 import android.content.Context;
 import android.graphics.Point;
@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class SwipeActivity extends Fragment {
+public class SwipeFragment extends Fragment {
 
     private SwipePlaceHolderView mSwipeView;
     private Context mContext;
@@ -37,13 +37,13 @@ public class SwipeActivity extends Fragment {
     public static List<Profile> profileList;
     private boolean isInFront;
 
-    public SwipeActivity() {
+    public SwipeFragment() {
         // Required empty public constructor
     }
 
 
-    public static SwipeActivity newInstance() {
-        SwipeActivity fragment = new SwipeActivity();
+    public static SwipeFragment newInstance() {
+        SwipeFragment fragment = new SwipeFragment();
         return fragment;
     }
 
@@ -118,7 +118,7 @@ public class SwipeActivity extends Fragment {
                 //mSwipeView.undoLastSwipe();
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.add(R.id.fragment_container, SwipeActivity.newInstance(),"swipe_fragment");
+                fragmentTransaction.add(R.id.fragment_container, SwipeFragment.newInstance(),"swipe_fragment");
                 fragmentTransaction.commit();
             }
         });

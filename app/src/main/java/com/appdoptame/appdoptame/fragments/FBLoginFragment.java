@@ -1,4 +1,4 @@
-package com.appdoptame.appdoptame.Auth;
+package com.appdoptame.appdoptame.fragments;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import com.appdoptame.appdoptame.Base.BaseActivity;
 import com.appdoptame.appdoptame.R;
-import com.appdoptame.appdoptame.activities.SwipeActivity;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -34,12 +33,12 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link FBLoginLogic.OnFragmentInteractionListener} interface
+ * {@link FBLoginFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link FBLoginLogic#newInstance} factory method to
+ * Use the {@link FBLoginFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FBLoginLogic extends Fragment {
+public class FBLoginFragment extends Fragment {
 
     private LoginButton loginButton;
     private CallbackManager callbackManager;
@@ -50,13 +49,13 @@ public class FBLoginLogic extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public FBLoginLogic() {
+    public FBLoginFragment() {
         // Required empty public constructor
     }
 
 
-    public static FBLoginLogic newInstance() {
-        FBLoginLogic fragment = new FBLoginLogic();
+    public static FBLoginFragment newInstance() {
+        FBLoginFragment fragment = new FBLoginFragment();
         return fragment;
     }
 

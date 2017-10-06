@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.appdoptame.appdoptame.R;
+import com.appdoptame.appdoptame.fragments.PostFragment;
 import com.facebook.login.LoginManager;
 import com.appdoptame.appdoptame.Auth.Login;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,7 +36,7 @@ public class TestActivity extends AppCompatActivity {
 
     private void goUploadScreen(Bundle savedInstanceState){
         String user = savedInstanceState.getString("Username");
-        Intent intent = new Intent(this, PostActivity.class);
+        Intent intent = new Intent(this, PostFragment.class);
         intent.putExtra("Username", user);
         startActivity(intent);
     }

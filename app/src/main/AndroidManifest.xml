@@ -48,9 +48,9 @@
             android:label="@string/title_activity_base"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activities.TestActivity" />
-        <activity android:name=".activities.PostActivity" />
+        <activity android:name=".fragments.PostFragment" />
         <activity android:name=".activities.ProfileActivity" />
-        <activity android:name=".activities.NotificationActivity" />
+        <activity android:name=".fragments.NotificationFragment" />
         <activity android:name=".activities.ChatActivity"></activity>
     </application>
 

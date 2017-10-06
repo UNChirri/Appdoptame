@@ -17,6 +17,8 @@ import android.widget.ListView;
 import com.appdoptame.appdoptame.Auth.Login;
 import com.appdoptame.appdoptame.R;
 import com.appdoptame.appdoptame.adapter.ChatArrayAdapter;
+import com.appdoptame.appdoptame.fragments.NotificationFragment;
+import com.appdoptame.appdoptame.fragments.SwipeFragment;
 import com.appdoptame.appdoptame.model.ChatMessage;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
@@ -104,12 +106,12 @@ public class ChatActivity extends Activity {
                 }
                 return true;
             case R.id.view_posts:
-                intent = new Intent(this, SwipeActivity.class);
+                intent = new Intent(this, SwipeFragment.class);
                 intent.putExtra("Username", userName);
                 startActivity(intent);
                 return true;
             case R.id.view_notifications:
-                intent = new Intent(this, NotificationActivity.class);
+                intent = new Intent(this, NotificationFragment.class);
                 intent.putExtra("Username", userName);
                 startActivity(intent);
                 return  true;

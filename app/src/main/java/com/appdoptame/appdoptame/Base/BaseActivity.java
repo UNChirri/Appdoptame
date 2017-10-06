@@ -5,12 +5,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -20,15 +17,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.appdoptame.appdoptame.Auth.FBLoginLogic;
 import com.appdoptame.appdoptame.Auth.Login;
 import com.appdoptame.appdoptame.R;
-import com.appdoptame.appdoptame.activities.NotificationActivity;
-import com.appdoptame.appdoptame.activities.PostActivity;
-import com.appdoptame.appdoptame.activities.SwipeActivity;
+import com.appdoptame.appdoptame.fragments.NotificationFragment;
+import com.appdoptame.appdoptame.fragments.PostFragment;
+import com.appdoptame.appdoptame.fragments.SwipeFragment;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -46,7 +41,7 @@ public class BaseActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     DrawerLayout drawer;
-    SwipeActivity swipeFragment;
+    SwipeFragment swipeFragment;
 
 
     /**
@@ -108,7 +103,7 @@ public class BaseActivity extends AppCompatActivity
     private void swipeFragmentInvocation(){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        swipeFragment = SwipeActivity.newInstance();
+        swipeFragment = SwipeFragment.newInstance();
         fragmentTransaction.add(R.id.fragment_container, swipeFragment,"swipe_fragment");
         fragmentTransaction.commit();
     }
@@ -116,7 +111,7 @@ public class BaseActivity extends AppCompatActivity
     private void notificationFragmentInvocation(){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        NotificationActivity notificationFragment = NotificationActivity.newInstance();
+        NotificationFragment notificationFragment = NotificationFragment.newInstance();
         Bundle bundle = new Bundle();
         bundle.putSerializable("profile0",swipeFragment.getProfileList().get(0));
         bundle.putSerializable("profile1",swipeFragment.getProfileList().get(1));
@@ -128,7 +123,7 @@ public class BaseActivity extends AppCompatActivity
     private void postFragmentInvocation(){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        PostActivity postFragment = PostActivity.newInstance();
+        PostFragment postFragment = PostFragment.newInstance();
         fragmentTransaction.add(R.id.fragment_container, postFragment,"post_fragment");
         fragmentTransaction.commit();
     }

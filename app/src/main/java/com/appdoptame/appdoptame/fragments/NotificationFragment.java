@@ -1,15 +1,10 @@
-package com.appdoptame.appdoptame.activities;
+package com.appdoptame.appdoptame.fragments;
 
 import android.content.Intent;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -17,25 +12,24 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.appdoptame.appdoptame.Auth.Login;
 import com.appdoptame.appdoptame.R;
+import com.appdoptame.appdoptame.activities.ChatActivity;
 import com.appdoptame.appdoptame.model.Notification;
 import com.appdoptame.appdoptame.model.Profile;
-import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class NotificationActivity extends Fragment {
+public class NotificationFragment extends Fragment {
 
     ListView listView;
     private String userName;
 
-    public NotificationActivity() {
+    public NotificationFragment() {
         // Required empty public constructor
     }
 
 
-    public static NotificationActivity newInstance() {
-        NotificationActivity fragment = new NotificationActivity();
+    public static NotificationFragment newInstance() {
+        NotificationFragment fragment = new NotificationFragment();
         return fragment;
     }
 
