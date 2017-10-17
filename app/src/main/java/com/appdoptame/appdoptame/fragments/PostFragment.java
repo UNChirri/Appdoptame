@@ -4,11 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +21,7 @@ import android.widget.ImageButton;
 
 import com.appdoptame.appdoptame.model.Profile;
 import com.appdoptame.appdoptame.R;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -27,8 +30,22 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+
+import in.myinnos.awesomeimagepicker.activities.AlbumSelectActivity;
+import in.myinnos.awesomeimagepicker.helpers.ConstantsCustomGallery;
+import in.myinnos.awesomeimagepicker.models.Image;
 
 /**
  * Created by jufarangoma on 17/09/17.
@@ -43,13 +60,16 @@ public class PostFragment extends Fragment {
     private EditText description;
     private EditText age;
     private EditText name;
-    private String photoUrl;
     private EditText location;
     private Button sendButton;
     private Button femaleButton;
     private Button maleButton;
     private EditText breed;
-    String genre;
+    private String genre;
+    private ArrayList<String> photos;
+    private List<Image> images;
+    private String cardPhoto;
+    private int count;
     //Firebase
     private FirebaseStorage firebaseStorage;
     private StorageReference storageReference;
@@ -88,7 +108,7 @@ public class PostFragment extends Fragment {
         femaleButton = (Button) view.findViewById(R.id.btn_female);
         location = (EditText) view.findViewById(R.id.et_location);
         breed = (EditText) view.findViewById(R.id.et_breed);
-
+        photos = new ArrayList<>();
         //Firebase inicialization
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference().child("posts");
@@ -144,8 +164,16 @@ public class PostFragment extends Fragment {
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                count =0;
 
-                Profile profile = new Profile(user, name.getText().toString(), genre , age.getText().toString(), photoUrl, location.getText().toString(), breed.getText().toString(), description.getText().toString());
+                while(count<=images.size()){
+                    Log.d("count", String.valueOf(count));
+                }
+
+                cardPhoto = photos.get(0);
+                Log.d("photo", String.valueOf(photos.size()));
+
+                Profile profile = new Profile(user, name.getText().toString(), genre , age.getText().toString(), photos, location.getText().toString(), breed.getText().toString(), description.getText().toString(),cardPhoto);
                 databaseReference.push().setValue(profile);
                 // Clear input box
                 InputMethodManager inputManager =
@@ -155,6 +183,7 @@ public class PostFragment extends Fragment {
                         getActivity().getCurrentFocus().getWindowToken(),
                         InputMethodManager.HIDE_NOT_ALWAYS);
                 removeFragment();
+
             }
 
         });
@@ -163,10 +192,14 @@ public class PostFragment extends Fragment {
         mPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("image/jpeg");
-                intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
-                startActivityForResult(Intent.createChooser(intent, "Complete action using"), RC_PHOTO_PICKER);
+
+                Intent intent = new Intent(view.getContext(),AlbumSelectActivity.class);
+                intent.putExtra(ConstantsCustomGallery.INTENT_EXTRA_LIMIT, 10); // set limit for image selection
+                startActivityForResult(intent, ConstantsCustomGallery.REQUEST_CODE);
+//                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+//                intent.setType("image/jpeg");
+//                intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
+//                startActivityForResult(Intent.createChooser(intent, "Complete action using"), RC_PHOTO_PICKER);
             }
         });
 
@@ -208,17 +241,45 @@ public class PostFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        Uri selectedImage = data.getData();
-        final StorageReference photoRef = storageReference.child(selectedImage.getLastPathSegment());
-        photoRef.putFile(selectedImage).addOnSuccessListener(getActivity(), new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Uri download = taskSnapshot.getDownloadUrl();
-                photoUrl = download.toString();
-            }
-        });
 
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == ConstantsCustomGallery.REQUEST_CODE && resultCode == getActivity().RESULT_OK && data != null) {
+            //The array list has the image paths of the selected images
+            images = data.getParcelableArrayListExtra(ConstantsCustomGallery.INTENT_EXTRA_IMAGES);
+            photos = new ArrayList<String>();
+            for (int i = 0; i < images.size(); i++) {
+                Uri selectedImage = Uri.fromFile(new File(images.get(i).path));
+                final StorageReference photoRef = storageReference.child(selectedImage.getLastPathSegment());
+                photoRef.putFile(selectedImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        Log.d("test","wntro");
+                        Uri download = taskSnapshot.getDownloadUrl();
+                        Log.d("text2 ", download.toString());
+                        photos.add(download.toString());
+                    }
+
+                }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                        Log.i("progress", String.format("onProgress: %5.2f MB transferred",
+                                taskSnapshot.getBytesTransferred()/1024.0/1024.0));
+                    }
+                });
+            }
+        }
+
+//        super.onActivityResult(requestCode, resultCode, data);
+//        Uri selectedImage = data.getData();
+//        final StorageReference photoRef = storageReference.child(selectedImage.getLastPathSegment());
+//        photoRef.putFile(selectedImage).addOnSuccessListener(getActivity(), new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//            @Override
+//            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                Uri download = taskSnapshot.getDownloadUrl();
+//                photoUrl = download.toString();
+//            }
+//        });
     }
 
     private void removeFragment(){

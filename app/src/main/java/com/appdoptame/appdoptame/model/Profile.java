@@ -76,15 +76,16 @@ public  class Profile implements Serializable{
         this.photoUrl = photoUrl;
     }
 
-    public Profile(String user, String name, String genre, String age, String photoUrl, String location, String breed, String description) {
+    public Profile(String user, String name, String genre, String age, List<String> photos, String location, String breed, String description, String photoUrl) {
         this.user = user;
         this.description = description;
         this.genre = genre;
         this.age = age;
-        this.photoUrl = photoUrl;
+        this.photos = photos;
         this.location = location;
         this.name = name;
         this.breed = breed;
+        this.photoUrl = photoUrl;
     }
 
     public String getId() {

@@ -52,6 +52,7 @@
         <activity android:name=".activities.ProfileActivity" />
         <activity android:name=".fragments.NotificationFragment" />
         <activity android:name=".activities.ChatActivity"></activity>
+        <activity android:name="in.myinnos.awesomeimagepicker.activities.AlbumSelectActivity" android:screenOrientation="portrait" />
     </application>
 
 </manifest>
