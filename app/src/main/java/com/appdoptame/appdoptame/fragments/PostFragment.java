@@ -18,6 +18,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.appdoptame.appdoptame.model.Profile;
 import com.appdoptame.appdoptame.R;
@@ -164,11 +165,10 @@ public class PostFragment extends Fragment {
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                count =0;
 
-                while(count<=images.size()){
-                    Log.d("count", String.valueOf(count));
-                }
+//                while(count<=images.size()){
+//                    Log.d("count", String.valueOf(count));
+//                }
 
                 cardPhoto = photos.get(0);
                 Log.d("photo", String.valueOf(photos.size()));
@@ -194,7 +194,7 @@ public class PostFragment extends Fragment {
             public void onClick(View view) {
 
                 Intent intent = new Intent(view.getContext(),AlbumSelectActivity.class);
-                intent.putExtra(ConstantsCustomGallery.INTENT_EXTRA_LIMIT, 10); // set limit for image selection
+                intent.putExtra(ConstantsCustomGallery.INTENT_EXTRA_LIMIT, 4); // set limit for image selection
                 startActivityForResult(intent, ConstantsCustomGallery.REQUEST_CODE);
 //                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
 //                intent.setType("image/jpeg");
@@ -263,8 +263,8 @@ public class PostFragment extends Fragment {
                 }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                        Log.i("progress", String.format("onProgress: %5.2f MB transferred",
-                                taskSnapshot.getBytesTransferred()/1024.0/1024.0));
+                        String str = String.format("onProgress: %5.2f MB transferred", taskSnapshot.getBytesTransferred()/1024.0/1024.0);
+                        Toast.makeText(getActivity(), str, Toast.LENGTH_SHORT).show();
                     }
                 });
             }
