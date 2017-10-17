@@ -87,15 +87,17 @@
                 android:id="@+id/btn_female"
                 android:layout_width="45dp"
                 android:layout_height="60dp"
-                android:background="@drawable/female"
-                android:layout_marginLeft="40dp"/>
+                android:background="@drawable/female_shadow"
+                android:layout_marginLeft="40dp"
+                android:elevation="150dp"/>
 
             <Button
                 android:id="@+id/btn_male"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
-                android:background="@drawable/male"
-                android:layout_marginLeft="40dp"/>
+                android:background="@drawable/male_shadow"
+                android:layout_marginLeft="40dp"
+                android:elevation="150dp"/>
 
         </LinearLayout>
 
@@ -166,10 +168,11 @@
                 android:id="@+id/btn_send"
                 android:layout_width="170dp"
                 android:layout_height="match_parent"
-                android:background="@drawable/bone_btn"
+                android:background="@drawable/button_shadow"
                 android:layout_centerInParent="true"
                 android:enabled="false"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp"
+                android:elevation="150dp"/>
 
         </RelativeLayout>
 

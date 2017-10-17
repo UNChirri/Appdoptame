@@ -109,46 +109,19 @@ public class PostFragment extends Fragment {
         femaleButton = (Button) view.findViewById(R.id.btn_female);
         location = (EditText) view.findViewById(R.id.et_location);
         breed = (EditText) view.findViewById(R.id.et_breed);
+
         photos = new ArrayList<>();
         //Firebase inicialization
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference().child("posts");
         firebaseStorage = FirebaseStorage.getInstance();
         storageReference = firebaseStorage.getReference().child("animals_photos");
-        description.addTextChangedListener(new TextWatcher() {
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.toString().trim().length()==0){
-                    sendButton.setEnabled(false);
-                } else {
-                    sendButton.setEnabled(true);
-                }
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count,
-                                          int after) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                // TODO Auto-generated method stub
-                if(s.toString().trim().length()==0){
-                    sendButton.setEnabled(false);
-                } else {
-                    sendButton.setEnabled(true);
-                }
-            }
-        });
+        sendButton.setEnabled(false);
 
 
         femaleButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                maleButton.setEnabled(false);
                 genre = "Female";
             }
         });
@@ -156,7 +129,6 @@ public class PostFragment extends Fragment {
         maleButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                femaleButton.setEnabled(false);
                 genre = "Male";
             }
         });
@@ -192,9 +164,9 @@ public class PostFragment extends Fragment {
         mPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Toast.makeText(getActivity(),"Puedes subir máximo 5 fotos!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(view.getContext(),AlbumSelectActivity.class);
-                intent.putExtra(ConstantsCustomGallery.INTENT_EXTRA_LIMIT, 4); // set limit for image selection
+                intent.putExtra(ConstantsCustomGallery.INTENT_EXTRA_LIMIT, 5); // set limit for image selection
                 startActivityForResult(intent, ConstantsCustomGallery.REQUEST_CODE);
 //                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
 //                intent.setType("image/jpeg");
@@ -247,6 +219,7 @@ public class PostFragment extends Fragment {
         if (requestCode == ConstantsCustomGallery.REQUEST_CODE && resultCode == getActivity().RESULT_OK && data != null) {
             //The array list has the image paths of the selected images
             images = data.getParcelableArrayListExtra(ConstantsCustomGallery.INTENT_EXTRA_IMAGES);
+            count=images.size();
             photos = new ArrayList<String>();
             for (int i = 0; i < images.size(); i++) {
                 Uri selectedImage = Uri.fromFile(new File(images.get(i).path));
@@ -254,18 +227,14 @@ public class PostFragment extends Fragment {
                 photoRef.putFile(selectedImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        Log.d("test","wntro");
                         Uri download = taskSnapshot.getDownloadUrl();
-                        Log.d("text2 ", download.toString());
                         photos.add(download.toString());
+                        count--;
+                        String str = "Faltan " + String.valueOf(count) + " Fotos por subir.";
+                        Toast.makeText(getActivity(), str, Toast.LENGTH_SHORT).show();
+                        if(count==0) sendButton.setEnabled(true);
                     }
 
-                }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                        String str = String.format("onProgress: %5.2f MB transferred", taskSnapshot.getBytesTransferred()/1024.0/1024.0);
-                        Toast.makeText(getActivity(), str, Toast.LENGTH_SHORT).show();
-                    }
                 });
             }
         }
