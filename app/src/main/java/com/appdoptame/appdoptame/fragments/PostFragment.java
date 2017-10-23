@@ -145,8 +145,8 @@ public class PostFragment extends Fragment {
                 cardPhoto = photos.get(0);
                 Log.d("photo", String.valueOf(photos.size()));
 
-                Profile profile = new Profile(user, name.getText().toString(), genre , age.getText().toString(), photos, location.getText().toString(), breed.getText().toString(), description.getText().toString(),cardPhoto);
-                databaseReference.push().setValue(profile);
+//                Profile profile = new Profile(user, name.getText().toString(), genre , age.getText().toString(), photos, location.getText().toString(), breed.getText().toString(), description.getText().toString(),cardPhoto);
+//                databaseReference.push().setValue(profile);
                 // Clear input box
                 InputMethodManager inputManager =
                         (InputMethodManager) getContext().

@@ -141,7 +141,7 @@
             android:id="@+id/breed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/location">
+            android:layout_below="@+id/sterilization">
 
             <EditText
                 android:id="@+id/et_breed"
@@ -150,6 +150,21 @@
                 android:background="@drawable/et_round"
                 android:paddingLeft="15dp"
                 android:hint="Raza"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/Padding"
+            android:id="@+id/sterilization"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/location">
+
+            <Switch
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:thumb="@drawable/switch_thumb"
+                android:track="@drawable/switch_bg" />
 
         </LinearLayout>
 
@@ -173,8 +188,9 @@
                 android:enabled="false"
                 android:layout_marginTop="10dp"
                 android:elevation="150dp"/>
-
         </RelativeLayout>
 
+
     </RelativeLayout>
+
 </ScrollView>

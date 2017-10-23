@@ -48,6 +48,14 @@ public  class Profile implements Serializable{
     @Expose
     private List<String> photos;
 
+    @SerializedName("Sterilization")
+    @Expose
+    private Boolean Sterilization;
+
+    @SerializedName("vaccine")
+    @Expose
+    private List<String> vaccine;
+
     @Override
     public String toString() {
         return "Profile{" +
@@ -61,6 +69,8 @@ public  class Profile implements Serializable{
                 ", location='" + location + '\'' +
                 ", breed='" + breed + '\'' +
                 ", photos=" + photos +
+                ", Sterilization=" + Sterilization +
+                ", vaccine=" + vaccine +
                 '}';
     }
 
@@ -76,16 +86,19 @@ public  class Profile implements Serializable{
         this.photoUrl = photoUrl;
     }
 
-    public Profile(String user, String name, String genre, String age, List<String> photos, String location, String breed, String description, String photoUrl) {
+    public Profile(String id, String user, String description, String genre, String age, String name, String photoUrl, String location, String breed, List<String> photos, Boolean sterilization, List<String> vaccine) {
+        this.id = id;
         this.user = user;
         this.description = description;
         this.genre = genre;
         this.age = age;
-        this.photos = photos;
-        this.location = location;
         this.name = name;
-        this.breed = breed;
         this.photoUrl = photoUrl;
+        this.location = location;
+        this.breed = breed;
+        this.photos = photos;
+        Sterilization = sterilization;
+        this.vaccine = vaccine;
     }
 
     public String getId() {
@@ -162,5 +175,21 @@ public  class Profile implements Serializable{
 
     public void setBreed(String breed) {
         this.breed = breed;
+    }
+
+    public Boolean getSterilization() {
+        return Sterilization;
+    }
+
+    public List<String> getVaccine() {
+        return vaccine;
+    }
+
+    public void setSterilization(Boolean sterilization) {
+        Sterilization = sterilization;
+    }
+
+    public void setVaccine(List<String> vaccine) {
+        this.vaccine = vaccine;
     }
 }
