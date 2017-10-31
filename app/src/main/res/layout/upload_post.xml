@@ -162,9 +162,7 @@
 
             <Switch
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:thumb="@drawable/switch_thumb"
-                android:track="@drawable/switch_bg" />
+                android:layout_height="match_parent" />
 
         </LinearLayout>
 

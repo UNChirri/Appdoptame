@@ -18,7 +18,6 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             profile = (Profile)getIntent().getSerializableExtra("profile"); //Obtaining data
