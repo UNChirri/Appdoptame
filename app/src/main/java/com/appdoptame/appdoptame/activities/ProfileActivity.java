@@ -1,8 +1,10 @@
 package com.appdoptame.appdoptame.activities;
 
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.support.v7.widget.Toolbar;
 
 import com.appdoptame.appdoptame.R;
 import com.appdoptame.appdoptame.model.Profile;
@@ -31,7 +33,6 @@ public class ProfileActivity extends AppCompatActivity {
             {
                 TextSliderView textSliderView = new TextSliderView(this);
                 textSliderView
-                        .description(profile.getName())
                         .image(url);
 
                 sliderShow.addSlider(textSliderView);
@@ -41,7 +42,6 @@ public class ProfileActivity extends AppCompatActivity {
         {
             TextSliderView textSliderView = new TextSliderView(this);
             textSliderView
-                    .description(profile.getName())
                     .image(profile.getPhotoUrl());
 
             sliderShow.addSlider(textSliderView);
@@ -63,6 +63,15 @@ public class ProfileActivity extends AppCompatActivity {
         tv = (TextView) findViewById(R.id.location);
         tv.setText(profile.getLocation());
 
+        CollapsingToolbarLayout collapsingToolbar =
+                (CollapsingToolbarLayout) findViewById(R.id.collapsingToolbar);
+        collapsingToolbar.setTitle(profile.getName());
+    }
+
+    void showToolbar(String title, Boolean upButton) {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.profileToolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle(title);
     }
 
     @Override
