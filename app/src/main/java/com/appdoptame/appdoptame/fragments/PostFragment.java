@@ -147,7 +147,7 @@ public class PostFragment extends Fragment {
 
 //                Profile profile = new Profile(user, name.getText().toString(), genre , age.getText().toString(), photos, location.getText().toString(), breed.getText().toString(), description.getText().toString(),cardPhoto);
 //                databaseReference.push().setValue(profile);
-                // Clear input box
+//
                 InputMethodManager inputManager =
                         (InputMethodManager) getContext().
                                 getSystemService(Context.INPUT_METHOD_SERVICE);

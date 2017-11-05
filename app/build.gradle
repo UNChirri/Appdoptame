@@ -52,6 +52,10 @@ dependencies {
     //ImagePicker
     compile 'com.github.myinnos:AwesomeImagePicker:1.0.2'
     compile 'com.github.crosswall:Android-Coverflow:release-v1.0.4'
+
+    compile 'com.synnapps:carouselview:0.1.4'
+
+    compile 'com.bogdwellers:pinchtozoom:0.1'
 }
 
 apply plugin: 'com.google.gms.google-services'
