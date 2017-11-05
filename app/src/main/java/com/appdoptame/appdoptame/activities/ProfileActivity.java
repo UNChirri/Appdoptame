@@ -71,6 +71,7 @@ public class ProfileActivity extends AppCompatActivity {
                 image = (ImageView) findViewById(R.id.temp_image);
                 image.setBackground(drawableResources.get(position));
                 image.setOnTouchListener(new ImageMatrixTouchHandler(getApplicationContext()));
+                
             }
         });
 ////
