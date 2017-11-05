@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/profileGroup"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/pet_house"
+            android:title="@string/pet_house"
+            />
+        <item
+            android:id="@+id/profileapp"
+            android:icon="@drawable/profile"
+            android:title="@string/prof"
+            />
+        <item
+            android:id="@+id/nav_upload"
+            android:icon="@drawable/upload_pet"
+            android:title="@string/upload_pet"
+            />
+        <item
+            android:id="@+id/nav_notifications"
+            android:icon="@drawable/notification"
+            android:title="@string/notifications"
+            />
+
+    </group>
+
+    <group
+        android:id="@+id/logoutGroup">
+
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/logout"
+                android:title="@string/logout"
+                />
+    </group>
+
+</menu>

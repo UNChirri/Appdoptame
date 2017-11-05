@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:fitsSystemWindows="true"
+        >
+
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsingToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            android:minHeight="30dp"
+            >
+
+
+            <com.synnapps.carouselview.CarouselView
+                android:id="@+id/carouselView"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                app:fillColor="#FFFFFFFF"
+                app:pageColor="#00000000"
+                app:radius="6dp"
+                app:slideInterval="3000"
+                app:strokeColor="#FF777777"
+                app:strokeWidth="1dp"/>
+
+            <ImageView
+                android:id="@+id/temp_image"
+                android:layout_width="150dp"
+                android:layout_height="360dp" />
+
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/profileToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:layout_collapseMode="pin"
+                >
+
+            </android.support.v7.widget.Toolbar>
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+        <android.support.v4.widget.NestedScrollView
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            style="@style/Padding">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp"
+>
+            <TableRow android:paddingBottom="10dp">
+                <TextView
+                    android:text="Nombre"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_weight=".30"/>
+                <TextView
+                    android:id="@+id/name"
+
+                    android:textSize="20sp"
+                    android:layout_weight=".70"/>
+            </TableRow>
+            <TableRow android:paddingBottom="10dp">
+                <TextView
+                    android:text="Raza"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:layout_weight=".30" />
+                <TextView
+                    android:id="@+id/breed"
+                    android:textSize="20sp"
+                    android:layout_weight=".70"/>
+            </TableRow>
+            <TableRow android:paddingBottom="10dp">
+                <TextView
+                    android:text="Edad"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:layout_weight=".30"/>
+                <TextView
+                    android:id="@+id/age"
+                    android:textSize="20sp"
+                    android:layout_weight=".70"/>
+            </TableRow>
+            <TableRow android:paddingBottom="10dp">
+                <TextView
+                    android:text="Lugar"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:layout_weight=".30"/>
+                <TextView
+                    android:id="@+id/location"
+                    android:textSize="20sp"
+                    android:layout_weight=".70"/>
+            </TableRow>
+            <TableRow android:paddingBottom="10dp">
+                <TextView
+                    android:text="Descripción"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:layout_weight="1"
+                    android:layout_span="2"/>
+            </TableRow>
+            <TableRow android:paddingBottom="10dp">
+                <TextView
+                    android:id="@+id/description"
+                    android:textSize="20sp"
+                    android:layout_weight="1"
+                    android:layout_span="2"/>
+            </TableRow>
+
+        </TableLayout>
+        </android.support.v4.widget.NestedScrollView>
+</android.support.design.widget.CoordinatorLayout>
