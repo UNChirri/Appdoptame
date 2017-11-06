@@ -38,7 +38,6 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-
         drawableResources = new ArrayList<>();
 
         Bundle extras = getIntent().getExtras();
@@ -63,17 +62,6 @@ public class ProfileActivity extends AppCompatActivity {
         carouselView.setPageCount(n);
         carouselView.setImageListener(imageListener);
 
-        carouselView.setOnTouchListener(new ImageMatrixTouchHandler(getApplicationContext()));
-       carouselView.setImageClickListener(new ImageClickListener() {
-            @Override
-            public void onClick(int position) {
-                Log.d("test", "Touch" + position);
-                image = (ImageView) findViewById(R.id.temp_image);
-                image.setBackground(drawableResources.get(position));
-                image.setOnTouchListener(new ImageMatrixTouchHandler(getApplicationContext()));
-            }
-        });
-////
         TextView tv = (TextView) findViewById(R.id.name);
         tv.setText(profile.getName());
 
@@ -88,6 +76,9 @@ public class ProfileActivity extends AppCompatActivity {
 
         tv = (TextView) findViewById(R.id.location);
         tv.setText(profile.getLocation());
+
+        tv = (TextView) findViewById(R.id.sterilization);
+        tv.setText(profile.getSterilization());
     }
 
     ImageListener imageListener = new ImageListener() {

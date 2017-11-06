@@ -18,6 +18,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.appdoptame.appdoptame.model.Profile;
@@ -71,6 +72,9 @@ public class PostFragment extends Fragment {
     private List<Image> images;
     private String cardPhoto;
     private int count;
+    private Switch sterilization;
+    private Boolean switchState;
+    private String sterilizationFirebase;
     //Firebase
     private FirebaseStorage firebaseStorage;
     private StorageReference storageReference;
@@ -117,7 +121,7 @@ public class PostFragment extends Fragment {
         firebaseStorage = FirebaseStorage.getInstance();
         storageReference = firebaseStorage.getReference().child("animals_photos");
         sendButton.setEnabled(false);
-
+        sterilization = (Switch) view.findViewById(R.id.steriizationSwitch);
 
         femaleButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -133,20 +137,18 @@ public class PostFragment extends Fragment {
             }
         });
 
-        // TODO conecction between front and back
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-//                while(count<=images.size()){
-//                    Log.d("count", String.valueOf(count));
-//                }
-
                 cardPhoto = photos.get(0);
-                Log.d("photo", String.valueOf(photos.size()));
 
-//                Profile profile = new Profile(user, name.getText().toString(), genre , age.getText().toString(), photos, location.getText().toString(), breed.getText().toString(), description.getText().toString(),cardPhoto);
-//                databaseReference.push().setValue(profile);
+                switchState = sterilization.isChecked();
+                if(switchState) sterilizationFirebase = "Si";
+                else sterilizationFirebase = "No";
+
+                Profile profile = new Profile(user,description.getText().toString(), genre , age.getText().toString(), name.getText().toString(), cardPhoto, location.getText().toString(), breed.getText().toString(), photos, sterilizationFirebase);
+                databaseReference.push().setValue(profile);
 //
                 InputMethodManager inputManager =
                         (InputMethodManager) getContext().
@@ -168,10 +170,6 @@ public class PostFragment extends Fragment {
                 Intent intent = new Intent(view.getContext(),AlbumSelectActivity.class);
                 intent.putExtra(ConstantsCustomGallery.INTENT_EXTRA_LIMIT, 5); // set limit for image selection
                 startActivityForResult(intent, ConstantsCustomGallery.REQUEST_CODE);
-//                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-//                intent.setType("image/jpeg");
-//                intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
-//                startActivityForResult(Intent.createChooser(intent, "Complete action using"), RC_PHOTO_PICKER);
             }
         });
 
@@ -220,6 +218,7 @@ public class PostFragment extends Fragment {
             //The array list has the image paths of the selected images
             images = data.getParcelableArrayListExtra(ConstantsCustomGallery.INTENT_EXTRA_IMAGES);
             count=images.size();
+
             photos = new ArrayList<String>();
             for (int i = 0; i < images.size(); i++) {
                 Uri selectedImage = Uri.fromFile(new File(images.get(i).path));
@@ -232,7 +231,10 @@ public class PostFragment extends Fragment {
                         count--;
                         String str = "Faltan " + String.valueOf(count) + " Fotos por subir.";
                         Toast.makeText(getActivity(), str, Toast.LENGTH_SHORT).show();
-                        if(count==0) sendButton.setEnabled(true);
+                        if(count==0){
+                            sendButton.setEnabled(true);
+                            sendButton.setBackgroundResource(R.drawable.bone_btn_pressed);
+                        }
                     }
 
                 });

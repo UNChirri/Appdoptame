@@ -113,6 +113,17 @@
             </TableRow>
             <TableRow android:paddingBottom="10dp">
                 <TextView
+                    android:text="Esterilizado"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:layout_weight=".30" />
+                <TextView
+                    android:id="@+id/sterilization"
+                    android:textSize="20sp"
+                    android:layout_weight=".70"/>
+            </TableRow>
+            <TableRow android:paddingBottom="10dp">
+                <TextView
                     android:text="Descripción"
                     android:textStyle="bold"
                     android:textSize="20sp"

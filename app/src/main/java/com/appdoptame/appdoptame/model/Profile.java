@@ -13,8 +13,6 @@ import java.util.List;
 
 public  class Profile implements Serializable{
 
-    private String id;
-
     private String user;
 
     @SerializedName("description")
@@ -50,17 +48,12 @@ public  class Profile implements Serializable{
 
     @SerializedName("Sterilization")
     @Expose
-    private Boolean Sterilization;
-
-    @SerializedName("vaccine")
-    @Expose
-    private List<String> vaccine;
+    private String sterilization;
 
     @Override
     public String toString() {
         return "Profile{" +
-                "id='" + id + '\'' +
-                ", user='" + user + '\'' +
+                "User='" + user + '\'' +
                 ", description='" + description + '\'' +
                 ", genre='" + genre + '\'' +
                 ", age='" + age + '\'' +
@@ -69,25 +62,14 @@ public  class Profile implements Serializable{
                 ", location='" + location + '\'' +
                 ", breed='" + breed + '\'' +
                 ", photos=" + photos +
-                ", Sterilization=" + Sterilization +
-                ", vaccine=" + vaccine +
+                ", Sterilization=" + sterilization +
                 '}';
     }
 
     public Profile(){
     }
 
-    public Profile(String user, String description, String genre, String age, String name, String photoUrl) {
-        this.user = user;
-        this.description = description;
-        this.genre = genre;
-        this.age = age;
-        this.name = name;
-        this.photoUrl = photoUrl;
-    }
-
-    public Profile(String id, String user, String description, String genre, String age, String name, String photoUrl, String location, String breed, List<String> photos, Boolean sterilization, List<String> vaccine) {
-        this.id = id;
+    public Profile(String user, String description, String genre, String age, String name, String photoUrl, String location, String breed, List<String> photos, String sterilization) {
         this.user = user;
         this.description = description;
         this.genre = genre;
@@ -97,16 +79,7 @@ public  class Profile implements Serializable{
         this.location = location;
         this.breed = breed;
         this.photos = photos;
-        Sterilization = sterilization;
-        this.vaccine = vaccine;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+        this.sterilization = sterilization;
     }
 
     public String getName() {
@@ -177,19 +150,12 @@ public  class Profile implements Serializable{
         this.breed = breed;
     }
 
-    public Boolean getSterilization() {
-        return Sterilization;
+    public String getSterilization() {
+        return sterilization;
     }
 
-    public List<String> getVaccine() {
-        return vaccine;
+    public void setSterilization(String sterilization) {
+        this.sterilization = sterilization;
     }
 
-    public void setSterilization(Boolean sterilization) {
-        Sterilization = sterilization;
-    }
-
-    public void setVaccine(List<String> vaccine) {
-        this.vaccine = vaccine;
-    }
 }
