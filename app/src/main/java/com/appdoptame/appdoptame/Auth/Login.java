@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class Login extends AppCompatActivity implements FBLoginFragment.OnFragmentInteractionListener {
 
     GPLoginFragment gpLogicFragment;
+    FBLoginFragment fbLoginFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,23 +29,26 @@ public class Login extends AppCompatActivity implements FBLoginFragment.OnFragme
         setContentView(R.layout.activity_login);
         //  checkSession();
         FragmentManager fragmentManager = getSupportFragmentManager();
-
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
         gpLogicFragment = GPLoginFragment.newInstance();
         fragmentTransaction.add(R.id.gp_fragment_container, gpLogicFragment);
-        FBLoginFragment fbLogicFragment = FBLoginFragment.newInstance();
-        fragmentTransaction.add(R.id.fb_fragment_container, fbLogicFragment);
+
+        fbLoginFragment = FBLoginFragment.newInstance();
+        fragmentTransaction.add(R.id.fb_fragment_container, fbLoginFragment);
+
         fragmentTransaction.commit();
 
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == GPLoginFragment.SIGN_IN_CODE) {
             gpLogicFragment.onActivityResult(requestCode, resultCode, data);
-            }else {
-                Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fb_logic_fragment);
-                fragment.onActivityResult(requestCode, resultCode, data);
-            }
+        }else {
+            fbLoginFragment.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
     @Override

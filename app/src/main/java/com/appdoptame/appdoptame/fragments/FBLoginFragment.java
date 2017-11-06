@@ -70,7 +70,7 @@ public class FBLoginFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fblogin_logic, container, false);
 
-        firebaseProgressBar = (ProgressBar) view.findViewById(R.id.firebaseProgressBar);
+
 
         callbackManager = CallbackManager.Factory.create();
 
@@ -104,6 +104,7 @@ public class FBLoginFragment extends Fragment {
                 }
             }
         };
+        firebaseProgressBar = (ProgressBar) view.findViewById(R.id.fbProgressBar);
         return view;
     }
 
