@@ -19,15 +19,7 @@
         android:layout_marginBottom="145dp"
         />
 
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/sign_in_button"
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:elevation="5dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="80dp"
-        />
+
 
     <ProgressBar
         android:id="@+id/firebaseProgressBar"
@@ -39,9 +31,6 @@
         android:visibility="gone"
         />
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/home"/>
+
 
 </RelativeLayout>

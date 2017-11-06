@@ -81,7 +81,7 @@ public class FBLoginFragment extends Fragment {
             public void onSuccess(LoginResult loginResult) {
                 handleFacebookAccessToken(loginResult.getAccessToken());
             }
-            
+
 
             @Override
             public void onCancel() {
@@ -164,7 +164,7 @@ public class FBLoginFragment extends Fragment {
 
     @Override
     public void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
-        callbackManager.onActivityResult(requestCode, resultCode, data);
+            callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
     /**
