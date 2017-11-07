@@ -24,6 +24,7 @@ import com.appdoptame.appdoptame.R;
 import com.appdoptame.appdoptame.fragments.NotificationFragment;
 import com.appdoptame.appdoptame.fragments.PostFragment;
 import com.appdoptame.appdoptame.fragments.SwipeFragment;
+import com.appdoptame.appdoptame.fragments.UserProfileFragment;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -128,6 +129,14 @@ public class BaseActivity extends AppCompatActivity
         fragmentTransaction.commit();
     }
 
+    private void userprofileFragmentInvocation(){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        UserProfileFragment userprofileFragment = UserProfileFragment.newInstance();
+        fragmentTransaction.add(R.id.fragment_container, userprofileFragment,"userprofile_fragment");
+        fragmentTransaction.commit();
+    }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -176,7 +185,12 @@ public class BaseActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.profileapp) {
-
+            Fragment dummy = getSupportFragmentManager().findFragmentByTag("userprofile_fragment");
+            if(dummy == null) {
+                userprofileFragmentInvocation();
+            }else{
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,dummy).commit();
+            }
         } else if (id == R.id.nav_logout) {
             FirebaseAuth.getInstance().signOut();
             LoginManager.getInstance().logOut();
