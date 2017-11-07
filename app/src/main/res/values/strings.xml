@@ -8,6 +8,7 @@
     <!-- Login strings-->
     <string name="error_login">An error has occurred</string>
     <string name="firebase_error_login">Login error: Incorrect user</string>
+    <string name="firebase_login_fail">Unable to log in with Firebase</string>
 
     <!-- Post strings -->
 

@@ -70,7 +70,7 @@ public class FBLoginFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fblogin_logic, container, false);
 
-        firebaseProgressBar = (ProgressBar) view.findViewById(R.id.firebaseProgressBar);
+
 
         callbackManager = CallbackManager.Factory.create();
 
@@ -81,7 +81,7 @@ public class FBLoginFragment extends Fragment {
             public void onSuccess(LoginResult loginResult) {
                 handleFacebookAccessToken(loginResult.getAccessToken());
             }
-            
+
 
             @Override
             public void onCancel() {
@@ -104,6 +104,7 @@ public class FBLoginFragment extends Fragment {
                 }
             }
         };
+        firebaseProgressBar = (ProgressBar) view.findViewById(R.id.fbProgressBar);
         return view;
     }
 
@@ -164,7 +165,7 @@ public class FBLoginFragment extends Fragment {
 
     @Override
     public void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
-        callbackManager.onActivityResult(requestCode, resultCode, data);
+            callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
     /**

@@ -6,12 +6,20 @@
     android:layout_height="match_parent"
     tools:context="com.appdoptame.appdoptame.Auth.Login">
 
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/home"/>
+
     <RelativeLayout
-        android:id="@+id/fragment_container"
+        android:id="@+id/fb_fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteY="8dp"
         tools:layout_editor_absoluteX="8dp" />
+
 
     <fragment android:name="com.appdoptame.appdoptame.fragments.FBLoginFragment"
         android:id="@+id/fb_logic_fragment"
@@ -20,4 +28,21 @@
         tools:layout_editor_absoluteY="8dp"
         tools:layout_editor_absoluteX="8dp" />
 
+    <RelativeLayout
+        android:id="@+id/gp_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="8dp" />
+
+    <fragment android:name="com.appdoptame.appdoptame.fragments.GPLoginFragment"
+        android:id="@+id/gp_logic_fragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="8dp" />
+    <!-->
+
+    <-->
 </RelativeLayout>
+

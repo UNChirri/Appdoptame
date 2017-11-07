@@ -11,29 +11,44 @@ import android.support.v7.app.AppCompatActivity;
 import com.appdoptame.appdoptame.Base.BaseActivity;
 import com.appdoptame.appdoptame.R;
 import com.appdoptame.appdoptame.fragments.FBLoginFragment;
+import com.appdoptame.appdoptame.fragments.GPLoginFragment;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 
 public class Login extends AppCompatActivity implements FBLoginFragment.OnFragmentInteractionListener {
 
+    GPLoginFragment gpLogicFragment;
+    FBLoginFragment fbLoginFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        checkSession();
+        //  checkSession();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        FBLoginFragment fbLogicFragment = FBLoginFragment.newInstance();
-        fragmentTransaction.add(R.id.fragment_container, fbLogicFragment);
+
+        gpLogicFragment = GPLoginFragment.newInstance();
+        fragmentTransaction.add(R.id.gp_fragment_container, gpLogicFragment);
+
+        fbLoginFragment = FBLoginFragment.newInstance();
+        fragmentTransaction.add(R.id.fb_fragment_container, fbLoginFragment);
+
         fragmentTransaction.commit();
 
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fb_logic_fragment);
-        fragment.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == GPLoginFragment.SIGN_IN_CODE) {
+            gpLogicFragment.onActivityResult(requestCode, resultCode, data);
+        }else {
+            fbLoginFragment.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
     @Override
