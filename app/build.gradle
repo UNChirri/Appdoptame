@@ -56,6 +56,10 @@ dependencies {
     compile 'com.synnapps:carouselview:0.1.4'
 
     compile 'com.bogdwellers:pinchtozoom:0.1'
+
+    //SpinnedGridLayoutManager
+    compile 'com.arasthel:spannedgridlayoutmanager:2.0.0'
+
 }
 
 apply plugin: 'com.google.gms.google-services'

@@ -22,4 +22,6 @@
     <string name="upload_pet">Subir animalito</string>
     <string name="notifications">Ver notificaciones</string>
     <string name="pet_house">Inicio</string>
+
+    <string name="banner_profile_pets">Mascotas en adopción</string>
 </resources>

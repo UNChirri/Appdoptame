@@ -87,7 +87,7 @@ public class SwipeFragment extends Fragment {
             public void onDataChange(DataSnapshot snapshot) {
                 for (DataSnapshot child : snapshot.getChildren()) {
                     Profile profile = child.getValue(Profile.class);
-                    Log.d("Profile",profile.toString());
+                    //Log.d("Profile",profile.toString());
                     profileList.add(profile);
                 }
                 cardView();
