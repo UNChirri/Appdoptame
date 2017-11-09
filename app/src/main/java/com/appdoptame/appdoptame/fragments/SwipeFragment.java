@@ -16,6 +16,8 @@ import com.appdoptame.appdoptame.R;
 import com.appdoptame.appdoptame.model.Profile;
 import com.appdoptame.appdoptame.utils.Utils;
 import com.appdoptame.appdoptame.view.Card;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,6 +38,7 @@ public class SwipeFragment extends Fragment {
     private DatabaseReference databaseReference;
     public static List<Profile> profileList;
     private boolean isInFront;
+    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     public SwipeFragment() {
         // Required empty public constructor
@@ -88,7 +91,11 @@ public class SwipeFragment extends Fragment {
                 for (DataSnapshot child : snapshot.getChildren()) {
                     Profile profile = child.getValue(Profile.class);
                     //Log.d("Profile",profile.toString());
-                    profileList.add(profile);
+                    if(profile.getUser() != null) {
+                        if (!user.getUid().equals(profile.getUser())) {
+                            profileList.add(profile);
+                        }
+                    }
                 }
                 cardView();
             }
