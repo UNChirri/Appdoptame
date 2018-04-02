@@ -1,8 +1,7 @@
 # MovieDB
 Application to search movies information
 
-<img src="https://github.com/jufarangoma/CropBitmapFromShape/blob/master/Collapsing.gif" width="240" height="427"/> 
-<img src="https://media.giphy.com/media/5zkGlgVSMChksMJHug/giphy.gif" width="240" height="427"/>
+<img src="https://github.com/jufarangoma/CropBitmapFromShape/blob/master/Collapsing.gif" width="240" height="427"/> <img src="https://media.giphy.com/media/5zkGlgVSMChksMJHug/giphy.gif" width="240" height="427"/>
 
 #Library Used
 * RxAndroid
